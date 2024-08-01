@@ -1,0 +1,106 @@
+﻿@page "/chatroom"
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Authorization
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+@attribute [Authorize]
+
+<PageTitle>ChatRoom</PageTitle>
+
+<h3>ChatRoom</h3>
+
+@if (!string.IsNullOrEmpty(connectionMessage))
+{
+    <div class="alert alert-info">@connectionMessage</div>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+<ul>
+    @foreach(var msg in messages)
+    {
+        <li>@msg</li>
+    }
+</ul>
+
+<div class="form-group">
+    <label>
+        消息：
+        <input @bind="message" @onkeyup="HandleKeyPress" />
+    </label>
+</div>
+<button class="btn btn-primary" @onclick="Send" disabled="@(!IsConnected)">发送</button>
+
+<p>@username</p>
+
+@code {
+    private string? username;
+    private string? message;
+    private HubConnection? hubConnection;
+    private List<string> messages = new List<string>();
+
+    private string connectionMessage = "";
+    private string errorMessage = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+            .Build();
+
+        hubConnection.On<string, string>("ReceiveMessage", (username, message) =>
+        {
+            messages.Add($"{username} {message}");
+            InvokeAsync(StateHasChanged);
+        });
+
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        username = user.Identity?.IsAuthenticated == true ? user.Identity.Name : "Anonymous";
+
+        try
+        {
+            await hubConnection.StartAsync();
+            connectionMessage = "Connect to the server.";
+            Console.WriteLine("Connnect to the server.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+            errorMessage = $"Error: {ex.Message}";
+        }
+
+    }
+
+    private async Task Send()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.SendAsync("SendMessage", username, message);
+            message = string.Empty;
+        }
+    }
+
+    private async Task HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await Send();
+        }
+    }
+
+    public bool IsConnected =>
+        hubConnection?.State == HubConnectionState.Connected;
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+    }
+}
