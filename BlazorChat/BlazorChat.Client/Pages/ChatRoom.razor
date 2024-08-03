@@ -10,41 +10,68 @@
 
 <h3>ChatRoom</h3>
 
-@if (!string.IsNullOrEmpty(connectionMessage))
+<p>@username</p>
+
+<div>
+    <input @bind="newGroupName" placeholder="New Group Name" />
+    <input @bind="newGroupPwd" placeholder="Group PassWord" typeof="password" />
+    <button @onclick="CreateGroup">Create New Group</button>
+</div>
+
+<div>
+    <select @bind="groupName">
+        <option value="">Select a group</option>
+        @foreach(var g in groups)
+        {
+            <option value="@g">@g</option>
+        }
+    </select>
+    <input @bind="groupPwd" placeholder="Group PassWord" typeof="password" />
+    <button @onclick="JoinGroup">Join Group</button>
+    <button @onclick="LeaveGroup">Leave Group</button>
+</div>
+
+@if (!isConnected)
 {
-    <div class="alert alert-info">@connectionMessage</div>
+    <p>Connecting...</p>
+}
+else
+{
+    <div class="form-group">
+        <label>
+            <input @bind="message" @onkeyup="HandleKeyPress" />
+            <button @onclick="SendMessageGroup" disabled="@(!isInGroup)">Send</button>
+        </label>
+    </div>
+    
+    <ul>
+        @foreach (var msg in messages)
+        {
+            <li>@msg</li>
+        }
+    </ul>
 }
 
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger">@errorMessage</div>
-}
-
-<ul>
-    @foreach(var msg in messages)
-    {
-        <li>@msg</li>
-    }
-</ul>
-
-<div class="form-group">
+@* <div class="form-group">
     <label>
-        消息：
         <input @bind="message" @onkeyup="HandleKeyPress" />
     </label>
 </div>
-<button class="btn btn-primary" @onclick="Send" disabled="@(!IsConnected)">发送</button>
-
-<p>@username</p>
+<button class="btn btn-primary" @onclick="Send" disabled="@(!IsConnected)">Send</button> *@
 
 @code {
+    private HubConnection? hubConnection;
+    private bool isConnected = false;
+    private bool isInGroup = false;
     private string? username;
     private string? message;
-    private HubConnection? hubConnection;
     private List<string> messages = new List<string>();
-
-    private string connectionMessage = "";
-    private string errorMessage = "";
+    private List<string> groups = new List<string>();
+    private string? newGroupName;
+    private string? newGroupPwd;
+    private string? groupName;
+    private string? groupPwd;
+    private string? currentGroup;
 
     protected override async Task OnInitializedAsync()
     {
@@ -54,7 +81,30 @@
 
         hubConnection.On<string, string>("ReceiveMessage", (username, message) =>
         {
-            messages.Add($"{username} {message}");
+            messages.Add($"{username}: {message}");
+            InvokeAsync(StateHasChanged);
+        });
+
+        hubConnection.On<List<string>>("UpdateGroupList", (groupList) =>
+        {
+            groups = groupList;
+            InvokeAsync(StateHasChanged);
+        });
+
+        hubConnection.On<bool, string>("JoinResult", (success, groupName) =>
+        {
+            isInGroup = success;
+            if(success)
+            {
+                currentGroup = groupName;
+            }
+            InvokeAsync(StateHasChanged);
+        });
+
+        hubConnection.On("LeaveResult", () =>
+        {
+            isInGroup = false;
+            currentGroup = null;
             InvokeAsync(StateHasChanged);
         });
 
@@ -62,34 +112,46 @@
         var user = authState.User;
         username = user.Identity?.IsAuthenticated == true ? user.Identity.Name : "Anonymous";
 
-        try
-        {
-            await hubConnection.StartAsync();
-            connectionMessage = "Connect to the server.";
-            Console.WriteLine("Connnect to the server.");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-            errorMessage = $"Error: {ex.Message}";
-        }
-
+        await hubConnection.StartAsync();
+        isConnected = true;
     }
 
-    private async Task Send()
+    private async Task CreateGroup()
     {
-        if (hubConnection is not null)
+        if(!string.IsNullOrEmpty(newGroupName)&&!string.IsNullOrEmpty(newGroupPwd))
         {
-            await hubConnection.SendAsync("SendMessage", username, message);
-            message = string.Empty;
+            await hubConnection.SendAsync("CreateGroup", newGroupName, newGroupPwd);
+            groups.Add(newGroupName);
+            newGroupName = string.Empty;
+            newGroupPwd = string.Empty;
         }
+    }
+
+    private async Task JoinGroup()
+    {
+        await hubConnection.SendAsync("JoinGroup", groupName, groupPwd);
+        groupPwd = string.Empty;
+    }
+
+    private async Task LeaveGroup()
+    {
+        await hubConnection.SendAsync("LeaveGroup", groupName);
+    }
+
+    private async Task SendMessageGroup()
+    {
+        if (!string.IsNullOrEmpty(message)&&isInGroup)
+        {
+            await hubConnection.SendAsync("SendMessageGroup", currentGroup, username, message);
+            message = string.Empty;
+        } 
     }
 
     private async Task HandleKeyPress(KeyboardEventArgs e)
     {
         if (e.Key == "Enter")
         {
-            await Send();
+            await SendMessageGroup();
         }
     }
 
