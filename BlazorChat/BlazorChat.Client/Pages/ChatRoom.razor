@@ -9,6 +9,7 @@
 <PageTitle>ChatRoom</PageTitle>
 
 <h3>ChatRoom</h3>
+<BlazorChat.Client.Components.Avator />
 
 <p>@username</p>
 
@@ -20,15 +21,26 @@
 
 <div>
     <select @bind="groupName">
-        <option value="">Select a group</option>
-        @foreach(var g in groups)
+        <option value="">Select a group to join</option>
+        @foreach (var g in existGroups)
         {
             <option value="@g">@g</option>
         }
     </select>
     <input @bind="groupPwd" placeholder="Group PassWord" typeof="password" />
     <button @onclick="JoinGroup">Join Group</button>
-    <button @onclick="LeaveGroup">Leave Group</button>
+    @* <button @onclick="LeaveGroup">Leave Group</button> *@
+</div>
+
+<div>
+    <select @bind="currentGroup">
+        <option value="">Select a group to chat</option>
+        @foreach(var g in joinedGroups)
+        {
+            <option value="@g">@g</option>
+        }
+    </select>
+    <button @onclick="LeaveGroup">Leave Group @currentGroup</button>
 </div>
 
 @if (!isConnected)
@@ -40,38 +52,49 @@ else
     <div class="form-group">
         <label>
             <input @bind="message" @onkeyup="HandleKeyPress" />
-            <button @onclick="SendMessageGroup" disabled="@(!isInGroup)">Send</button>
+            <button @onclick="SendMessageGroup" disabled="@(string.IsNullOrEmpty(currentGroup))">Send</button>
         </label>
     </div>
-    
+
+    @foreach(var g in joinedGroups)
+    {
+        <div>
+            <h4>@g</h4>
+            <ul>
+                @foreach(var msg in messagesInGroup[g])
+                {
+                    <li>[@msg.timestamp] @msg.username: @msg.message</li>
+                }
+            </ul>
+        </div>
+    }
+}
+
+<div>
+    <h4>System Message</h4>
     <ul>
-        @foreach (var msg in messages)
+        @foreach (var msg in systemMessages)
         {
             <li>@msg</li>
         }
     </ul>
-}
-
-@* <div class="form-group">
-    <label>
-        <input @bind="message" @onkeyup="HandleKeyPress" />
-    </label>
 </div>
-<button class="btn btn-primary" @onclick="Send" disabled="@(!IsConnected)">Send</button> *@
-
 @code {
     private HubConnection? hubConnection;
     private bool isConnected = false;
-    private bool isInGroup = false;
+    // private bool isInGroup = false;
     private string? username;
     private string? message;
-    private List<string> messages = new List<string>();
-    private List<string> groups = new List<string>();
     private string? newGroupName;
     private string? newGroupPwd;
     private string? groupName;
     private string? groupPwd;
     private string? currentGroup;
+    private List<string> systemMessages = new List<string>();
+    private List<string> existGroups = new List<string>();
+    private List<string> joinedGroups = new List<string>();
+    private Dictionary<string, List<(string username, string message, TimeOnly timestamp)>> messagesInGroup = new Dictionary<string, List<(string username, string message, TimeOnly timestamp)>>();
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -79,49 +102,76 @@ else
             .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
             .Build();
 
-        hubConnection.On<string, string>("ReceiveMessage", (username, message) =>
+
+        hubConnection.On<string, string, string, TimeOnly>("ReceiveMessage", (groupName, username, message, timeStamp) =>
         {
-            messages.Add($"{username}: {message}");
+            if (!messagesInGroup.ContainsKey(groupName))
+            {
+                messagesInGroup[groupName] = new List<(string, string, TimeOnly)>();
+            }
+            messagesInGroup[groupName].Add((username, message, timeStamp));
+            // messages.Add($"{username}({timeStamp}): {message}");
+            InvokeAsync(StateHasChanged);
+        });
+
+        hubConnection.On<string, string, DateTime>("SystemMessage", (username, message, timeStamp) =>
+        {
+            systemMessages.Add($"[{timeStamp}] {username}: {message}");
             InvokeAsync(StateHasChanged);
         });
 
         hubConnection.On<List<string>>("UpdateGroupList", (groupList) =>
         {
-            groups = groupList;
+            existGroups = groupList;
             InvokeAsync(StateHasChanged);
         });
 
         hubConnection.On<bool, string>("JoinResult", (success, groupName) =>
         {
-            isInGroup = success;
-            if(success)
+            // isInGroup = success;
+            if (success&&!joinedGroups.Contains(groupName))
             {
                 currentGroup = groupName;
+                joinedGroups.Add(currentGroup);
+                if(!messagesInGroup.ContainsKey(groupName))
+                {
+                    messagesInGroup[groupName] = new List<(string, string, TimeOnly)>();
+                }
             }
             InvokeAsync(StateHasChanged);
         });
 
-        hubConnection.On("LeaveResult", () =>
+        hubConnection.On<string>("LeaveResult", (groupName) =>
         {
-            isInGroup = false;
+            // isInGroup = false;
+            joinedGroups.Remove(groupName);
+            messagesInGroup.Remove(groupName);
             currentGroup = null;
             InvokeAsync(StateHasChanged);
         });
 
-        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
-        username = user.Identity?.IsAuthenticated == true ? user.Identity.Name : "Anonymous";
+        // var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        // var user = authState.User;
+        // username = user.Identity?.IsAuthenticated == true ? user.Identity.Name : "Anonymous";
 
+        await GetUsername();
         await hubConnection.StartAsync();
         isConnected = true;
     }
 
+    private async Task GetUsername()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        username = user.Identity?.Name ?? "Anonymous"; 
+    }
+
     private async Task CreateGroup()
     {
-        if(!string.IsNullOrEmpty(newGroupName)&&!string.IsNullOrEmpty(newGroupPwd))
+        if (!string.IsNullOrEmpty(newGroupName) && !string.IsNullOrEmpty(newGroupPwd))
         {
             await hubConnection.SendAsync("CreateGroup", newGroupName, newGroupPwd);
-            groups.Add(newGroupName);
+            existGroups.Add(newGroupName);
             newGroupName = string.Empty;
             newGroupPwd = string.Empty;
         }
@@ -135,16 +185,19 @@ else
 
     private async Task LeaveGroup()
     {
-        await hubConnection.SendAsync("LeaveGroup", groupName);
+        if (!string.IsNullOrEmpty(currentGroup))
+        {
+            await hubConnection.SendAsync("LeaveGroup", currentGroup);
+        }
     }
 
     private async Task SendMessageGroup()
     {
-        if (!string.IsNullOrEmpty(message)&&isInGroup)
+        if (!string.IsNullOrEmpty(message)&& !string.IsNullOrEmpty(currentGroup) /* && isInGroup */)
         {
             await hubConnection.SendAsync("SendMessageGroup", currentGroup, username, message);
             message = string.Empty;
-        } 
+        }
     }
 
     private async Task HandleKeyPress(KeyboardEventArgs e)
