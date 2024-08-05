@@ -81,20 +81,28 @@ namespace BlazorChat.Components.Account
                 throw new UnreachableException($"Authentication state not set in {nameof(OnPersistingAsync)}().");
             }
 
+            // 获取身份验证状态
             var authenticationState = await authenticationStateTask;
+            // 获取当前的 ClaimsPrincipal 对象，表示身份验证信息
             var principal = authenticationState.User;
-
+            // 检查用户是否已通过身份验证
+            // 获取用户声明
             if (principal.Identity?.IsAuthenticated == true)
             {
                 var userId = principal.FindFirst(options.ClaimsIdentity.UserIdClaimType)?.Value;
                 var email = principal.FindFirst(options.ClaimsIdentity.EmailClaimType)?.Value;
+                var userName = principal.FindFirst(options.ClaimsIdentity.UserNameClaimType)?.Value;
 
                 if (userId != null && email != null)
                 {
+
+                    // 将用户信息持久化存储为 JSON
+                    // public void PersistAsJson(string key, object value){}
                     state.PersistAsJson(nameof(UserInfo), new UserInfo
                     {
                         UserId = userId,
                         Email = email,
+                        UserName=userName,
                     });
                 }
             }

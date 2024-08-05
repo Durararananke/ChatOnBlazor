@@ -1,6 +1,9 @@
 ﻿@page "/chatroom"
-@rendermode InteractiveServer
+
+@rendermode InteractiveAuto
+
 @using Microsoft.AspNetCore.Authorization
+
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -11,7 +14,7 @@
 <h3>ChatRoom</h3>
 <BlazorChat.Client.Components.Avator />
 
-<p>@username</p>
+<p>@userName</p>
 
 <div>
     <input @bind="newGroupName" placeholder="New Group Name" />
@@ -29,7 +32,6 @@
     </select>
     <input @bind="groupPwd" placeholder="Group PassWord" typeof="password" />
     <button @onclick="JoinGroup">Join Group</button>
-    @* <button @onclick="LeaveGroup">Leave Group</button> *@
 </div>
 
 <div>
@@ -59,7 +61,19 @@ else
     @foreach(var g in joinedGroups)
     {
         <div>
-            <h4>@g</h4>
+            <h3>@g</h3>
+            <h5>Members: </h5>
+            <ul>
+                @if (groupMembers?.ContainsKey(g) == true)
+                {
+                    @foreach (var member in groupMembers[g])
+                    {
+                        <li>@member</li>
+                    }
+                }
+            </ul>
+            <br>
+            <h5>Messages: </h5>
             <ul>
                 @foreach(var msg in messagesInGroup[g])
                 {
@@ -67,6 +81,8 @@ else
                 }
             </ul>
         </div>
+        <br>
+        <br>
     }
 }
 
@@ -79,11 +95,11 @@ else
         }
     </ul>
 </div>
+
 @code {
     private HubConnection? hubConnection;
     private bool isConnected = false;
-    // private bool isInGroup = false;
-    private string? username;
+    private string? userName;
     private string? message;
     private string? newGroupName;
     private string? newGroupPwd;
@@ -94,10 +110,11 @@ else
     private List<string> existGroups = new List<string>();
     private List<string> joinedGroups = new List<string>();
     private Dictionary<string, List<(string username, string message, TimeOnly timestamp)>> messagesInGroup = new Dictionary<string, List<(string username, string message, TimeOnly timestamp)>>();
-
+    private Dictionary<string, List<string>> groupMembers = new Dictionary<string, List<string>>();
 
     protected override async Task OnInitializedAsync()
     {
+        await GetUsername();
         hubConnection = new HubConnectionBuilder()
             .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
             .Build();
@@ -110,7 +127,6 @@ else
                 messagesInGroup[groupName] = new List<(string, string, TimeOnly)>();
             }
             messagesInGroup[groupName].Add((username, message, timeStamp));
-            // messages.Add($"{username}({timeStamp}): {message}");
             InvokeAsync(StateHasChanged);
         });
 
@@ -126,9 +142,18 @@ else
             InvokeAsync(StateHasChanged);
         });
 
+        hubConnection.On<string,List<string>>("UpdateGroupMember", (groupName,members) =>
+        {
+            if(!groupMembers.ContainsKey(groupName))
+            {
+                groupMembers[groupName] = new List<string>(); 
+            }
+            groupMembers[groupName] = members;
+            InvokeAsync(StateHasChanged);
+        });
+
         hubConnection.On<bool, string>("JoinResult", (success, groupName) =>
         {
-            // isInGroup = success;
             if (success&&!joinedGroups.Contains(groupName))
             {
                 currentGroup = groupName;
@@ -143,7 +168,6 @@ else
 
         hubConnection.On<string>("LeaveResult", (groupName) =>
         {
-            // isInGroup = false;
             joinedGroups.Remove(groupName);
             messagesInGroup.Remove(groupName);
             currentGroup = null;
@@ -154,7 +178,7 @@ else
         // var user = authState.User;
         // username = user.Identity?.IsAuthenticated == true ? user.Identity.Name : "Anonymous";
 
-        await GetUsername();
+        // await GetUsername();
         await hubConnection.StartAsync();
         isConnected = true;
     }
@@ -163,7 +187,7 @@ else
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
-        username = user.Identity?.Name ?? "Anonymous"; 
+        userName = user.Identity?.Name ?? "Anonymous"; 
     }
 
     private async Task CreateGroup()
@@ -193,9 +217,9 @@ else
 
     private async Task SendMessageGroup()
     {
-        if (!string.IsNullOrEmpty(message)&& !string.IsNullOrEmpty(currentGroup) /* && isInGroup */)
+        if (!string.IsNullOrEmpty(message)&& !string.IsNullOrEmpty(currentGroup))
         {
-            await hubConnection.SendAsync("SendMessageGroup", currentGroup, username, message);
+            await hubConnection.SendAsync("SendMessageGroup", currentGroup, message);
             message = string.Empty;
         }
     }
