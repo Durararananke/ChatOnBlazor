@@ -1,6 +1,7 @@
 ﻿@page "/Account/Manage"
 
 @using System.ComponentModel.DataAnnotations
+@using BlazorChat.Extensions
 @using Microsoft.AspNetCore.Identity
 @using BlazorChat.Data
 
@@ -9,10 +10,13 @@
 @inject IdentityUserAccessor UserAccessor
 @inject IdentityRedirectManager RedirectManager
 
+
 <PageTitle>Profile</PageTitle>
 
 <h3>Profile</h3>
 <StatusMessage />
+
+<img src="@Input.Avatar" width="200" height="200" />
 
 <div class="row">
     <div class="col-md-6">
@@ -33,17 +37,28 @@
                 <ValidationMessage For="() => Input.PhoneNumber" class="text-danger" />
             </div>
 
+            <div class="form-floating mb-3">
+                <label>Avatar: </label>
+                <InputRadioGroup @bind-Value="Input.Avatar">
+                    @foreach (var avatar in avatars)
+                    {
+                        <InputRadio @key="@avatar" Value="@avatar" />
+                        <img src="@avatar" alt="Avatar" width="50" height="50" />
+                    }
+                </InputRadioGroup>
+            </div>
+
             <button type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
         </EditForm>
     </div>
 </div>
 
-<p>Username: @username</p>
 
 @code {
     private ApplicationUser user = default!;
     private string? username;
     private string? phoneNumber;
+    private string? avatar;
 
     [CascadingParameter]
     private HttpContext HttpContext { get; set; } = default!;
@@ -51,18 +66,35 @@
     [SupplyParameterFromForm]
     private InputModel Input { get; set; } = new();
 
+    
+    private static readonly List<string> avatars = new List<string>
+    {
+        "/avatars/bakyura.svg",
+        "/avatars/bakyura-2x.svg",
+        "/avatars/eight.svg",
+        "/avatars/gaki-2x.svg",
+        "/avatars/gg.svg",
+        "/avatars/junsui-2x.svg",
+        "/avatars/kakka.svg",
+        "/avatars/kanra.svg",
+        "/avatars/kuromu-2x.svg"
+    };
+   
     protected override async Task OnInitializedAsync()
     {
         user = await UserAccessor.GetRequiredUserAsync(HttpContext);
         username = await UserManager.GetUserNameAsync(user);
         phoneNumber = await UserManager.GetPhoneNumberAsync(user);
+        avatar = await UserManager.GetAvatarUrlAsync(user);
 
         Input.UserName ??= username;
         Input.PhoneNumber ??= phoneNumber;
+        Input.Avatar ??= avatar;
     }
 
     private async Task OnValidSubmitAsync()
     {
+        bool hasChanges = false;
         if (Input.PhoneNumber != phoneNumber)
         {
             var setPhoneResult = await UserManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
@@ -71,6 +103,7 @@
                 RedirectManager.RedirectToCurrentPageWithStatus("Error: Failed to set phone number.", HttpContext);
                 return;
             }
+            hasChanges = true;
         }
 
         if (Input.UserName != username)
@@ -81,10 +114,29 @@
                 RedirectManager.RedirectToCurrentPageWithStatus("Error: Failed to set user name.", HttpContext);
                 return;
             }
+            hasChanges = true;
         }
 
-        await SignInManager.RefreshSignInAsync(user);
-        RedirectManager.RedirectToCurrentPageWithStatus("Your profile has been updated", HttpContext);
+        if (Input.Avatar != avatar)
+        {
+            var setAvatarResult = await UserManager.SetAvatarUrlAsync(user, Input.Avatar);
+            if (!setAvatarResult.Succeeded)
+            {
+                RedirectManager.RedirectToCurrentPageWithStatus("Error: Failed to set avatar.", HttpContext);
+                return;
+            }
+            hasChanges = true;
+        }
+
+        if (hasChanges)
+        {
+            await SignInManager.RefreshSignInAsync(user);
+            RedirectManager.RedirectToCurrentPageWithStatus("Your profile has been updated", HttpContext);
+        }
+        else
+        {
+            RedirectManager.RedirectToCurrentPageWithStatus("No changes were made to your profile", HttpContext);
+        }
     }
 
     private sealed class InputModel
@@ -98,5 +150,9 @@
         [MinLength(3,ErrorMessage ="The name needs to be at least 3 characters.")]
         [Display(Name = "User name")]
         public string? UserName { get; set; }
+
+        [Display(Name = "Avatar")]
+        public string? Avatar { get; set; }
     }
+
 }

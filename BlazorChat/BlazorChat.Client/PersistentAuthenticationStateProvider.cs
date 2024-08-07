@@ -29,7 +29,8 @@ namespace BlazorChat.Client
             Claim[] claims = [
                 new Claim(ClaimTypes.NameIdentifier, userInfo.UserId),
                 new Claim(ClaimTypes.Name, userInfo.UserName),
-                new Claim(ClaimTypes.Email, userInfo.Email) ];
+                new Claim(ClaimTypes.Email, userInfo.Email)];
+                
 
             authenticationStateTask = Task.FromResult(
                 new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(claims,

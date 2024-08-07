@@ -1,45 +1,55 @@
-﻿@page "/Account/Manage/Avatar"
-
-@using Microsoft.AspNetCore.Authorization
-
-@attribute [Authorize]
+﻿@page "/avatar"
 @rendermode InteractiveAuto
 
+<h3>Avatar</h3>
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-floating mb-3">
-@* <div class="avatar selector"> *@
-        @foreach(var a in avatars)
-        {
-            <img src="@a" alt="Avatar Option" @onclick="()=>SelectAvatar(a)"
-                 style="width: 50px; height: 50px; margin: 5px; cursor: pointer;"
-                 class="@(selectedAvatar==a? "selected" : "")"/>
-        }
-        </div>
-    </div>
+<div>
+    @foreach(var a in AvatarPresets)
+    {
+        <img src="@a" alt="Avatar Option" @onclick="()=>Select(a)"
+             style="width:50px; height:50px; margin: 5px; cursor: pointer;"
+             class="@(SelectedAvatar==a?"selected":"")"/>
+    }
 </div>
 
-
-
-@code{
-    [Parameter] public EventCallback<string> onAvatarSelected { get; set; }
-    [Parameter] public string? selectedAvatar { get; set; }
-    private static readonly List<string> avatars = new List<string>
+@code {
+    [Parameter]
+    public string? SelectedAvatar{ get; set; }
+    [Parameter]
+    public EventCallback<string> OnSelectAvatar{ get; set; }
+    private static readonly List<string> AvatarPresets = new List<string>
     {
-        "/avatars/bakyura.svg",
-        "/avatars/bakyura-2x.svg",
-        "/avatars/eight.svg",
-        "/avatars/gaki-2x.svg",
-        "/avatars/gg.svg",
-        "/avatars/junsui-2x.svg",
-        "/avatars/kakka.svg",
-        "/avatars/kanra.svg",
-        "/avatars/kuromu-2x.svg"
+        "/c-avatars/bakyura.svg",
+        "/c-avatars/bakyura-2x.svg",
+        "/c-avatars/eight.svg",
+        "/c-avatars/gaki-2x.svg",
+        "/c-avatars/gg.svg",
+        "/c-avatars/junsui-2x.svg",
+        "/c-avatars/kakka.svg",
+        "/c-avatars/kanra.svg",
+        "/c-avatars/kuromu-2x.svg"
     };
-    private async Task SelectAvatar(string avatarUrl)
+
+    protected override async Task OnInitializedAsync()
     {
-        selectedAvatar = avatarUrl;
-        await onAvatarSelected.InvokeAsync(avatarUrl);
+        if(string.IsNullOrEmpty(SelectedAvatar))
+        {
+            await RandomSelect();
+        }
+    }
+
+
+    private async Task Select(string avatar)
+    {
+        SelectedAvatar = avatar;
+        await OnSelectAvatar.InvokeAsync(avatar);
+    }
+
+    public async Task RandomSelect()
+    {
+        Random random = new Random();
+        int index = random.Next(AvatarPresets.Count);
+        await Select(AvatarPresets[index]);
+        await OnSelectAvatar.InvokeAsync(SelectedAvatar);
     }
 }

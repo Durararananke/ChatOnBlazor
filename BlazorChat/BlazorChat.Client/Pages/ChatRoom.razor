@@ -12,9 +12,21 @@
 <PageTitle>ChatRoom</PageTitle>
 
 <h3>ChatRoom</h3>
-<BlazorChat.Client.Components.Avator />
 
 <p>@userName</p>
+
+@if (!string.IsNullOrEmpty(userAvatar))
+{
+    <img src="@userAvatar" alt="Selected Avatar" />
+}
+else
+{
+    <p>Loading avatar...</p>
+}
+
+<Avatar @ref="avatarComponent" SelectedAvatar="userAvatar" OnSelectAvatar="HandleAvatarSelected" />
+
+<button @onclick="UpdateUserAvatar">Confirm</button>
 
 <div>
     <input @bind="newGroupName" placeholder="New Group Name" />
@@ -68,7 +80,8 @@ else
                 {
                     @foreach (var member in groupMembers[g])
                     {
-                        <li>@member</li>
+                        @(member.User)
+                        <img src="@(member.Avatar)" alt="@(member.User)'s avatar" style="width: 32px; height: 32px; /* border-radius: 50%; */" />   
                     }
                 }
             </ul>
@@ -77,7 +90,20 @@ else
             <ul>
                 @foreach(var msg in messagesInGroup[g])
                 {
-                    <li>[@msg.timestamp] @msg.username: @msg.message</li>
+                    @* <li>
+                        <img src="@msg.avatar" alt="@msg.username's avatar" style="width: 32px; height: 32px; border-radius: 50%;" />
+                        [@msg.timestamp] @msg.username : @msg.message
+                    </li> *@
+                    <li class="message">
+                        <img src="@msg.avatar" alt="@msg.username's avatar" class="avatar" />
+                        <div class="message-content">
+                            <div>
+                                <span class="username">@msg.username</span>
+                                <span class="timestamp">@msg.timestamp.ToString("HH:mm")</span>
+                            </div>
+                            <div class="message-text">@msg.message</div>
+                        </div>
+                    </li>
                 }
             </ul>
         </div>
@@ -96,10 +122,56 @@ else
     </ul>
 </div>
 
+<style>
+    body {
+        background-color: #2b313f; 
+        color: #f3f9f1; 
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .avatar {
+        /* border-radius: 50%; */
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+    }
+
+    .message-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .username {
+        font-weight: bold;
+        color: #7289da;
+    }
+
+    .timestamp {
+        color: #72767d;
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    .message-text {
+        color: #dcddde;
+    }
+</style>
+
 @code {
     private HubConnection? hubConnection;
     private bool isConnected = false;
     private string? userName;
+    private string? userAvatar;
     private string? message;
     private string? newGroupName;
     private string? newGroupPwd;
@@ -109,24 +181,38 @@ else
     private List<string> systemMessages = new List<string>();
     private List<string> existGroups = new List<string>();
     private List<string> joinedGroups = new List<string>();
-    private Dictionary<string, List<(string username, string message, TimeOnly timestamp)>> messagesInGroup = new Dictionary<string, List<(string username, string message, TimeOnly timestamp)>>();
-    private Dictionary<string, List<string>> groupMembers = new Dictionary<string, List<string>>();
+    private Dictionary<string, List<(string username, string avatar, string message, TimeOnly timestamp)>> messagesInGroup = new Dictionary<string, List<(string username, string avatar, string message, TimeOnly timestamp)>>();
+    private Dictionary<string, List<GroupMember>> groupMembers = new Dictionary<string, List<GroupMember>>();
+    private Avatar? avatarComponent;
+    
+    public class GroupMember
+    {
+        public string User { get; set; }
+        public string Avatar { get; set; }
+    }
+
 
     protected override async Task OnInitializedAsync()
     {
         await GetUsername();
+        // if (string.IsNullOrEmpty(userAvatar))
+        // {
+        //     // 在父组件初始化时调用随机选择
+        //     await InitializeAvatar();
+        // }
+
         hubConnection = new HubConnectionBuilder()
             .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
             .Build();
 
 
-        hubConnection.On<string, string, string, TimeOnly>("ReceiveMessage", (groupName, username, message, timeStamp) =>
+        hubConnection.On<string, string, string, string, TimeOnly>("ReceiveMessage", (groupName, username, avatar, message, timeStamp) =>
         {
             if (!messagesInGroup.ContainsKey(groupName))
             {
-                messagesInGroup[groupName] = new List<(string, string, TimeOnly)>();
+                messagesInGroup[groupName] = new List<(string, string, string, TimeOnly)>();
             }
-            messagesInGroup[groupName].Add((username, message, timeStamp));
+            messagesInGroup[groupName].Add((username, avatar, message, timeStamp));
             InvokeAsync(StateHasChanged);
         });
 
@@ -142,11 +228,11 @@ else
             InvokeAsync(StateHasChanged);
         });
 
-        hubConnection.On<string,List<string>>("UpdateGroupMember", (groupName,members) =>
+        hubConnection.On<string, List<GroupMember>>("UpdateGroupMember", (groupName, members) =>
         {
             if(!groupMembers.ContainsKey(groupName))
             {
-                groupMembers[groupName] = new List<string>(); 
+                groupMembers[groupName] = new List<GroupMember>();
             }
             groupMembers[groupName] = members;
             InvokeAsync(StateHasChanged);
@@ -160,7 +246,7 @@ else
                 joinedGroups.Add(currentGroup);
                 if(!messagesInGroup.ContainsKey(groupName))
                 {
-                    messagesInGroup[groupName] = new List<(string, string, TimeOnly)>();
+                    messagesInGroup[groupName] = new List<(string, string, string, TimeOnly)>();
                 }
             }
             InvokeAsync(StateHasChanged);
@@ -183,11 +269,45 @@ else
         isConnected = true;
     }
 
+    // protected override async Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     if (!firstRender)
+    //     {
+    //         await GetUsername();
+    //     }
+    // }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && string.IsNullOrEmpty(userAvatar))
+        {
+            await avatarComponent.RandomSelect();
+        }
+    }
+
     private async Task GetUsername()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
-        userName = user.Identity?.Name ?? "Anonymous"; 
+        userName = user.Identity?.Name ?? "Anonymous";
+        //userAvatar = user?.FindFirst("avatar")?.Value ?? "default-avatar-url";
+    }
+
+    // private async Task InitializeAvatar()
+    // {
+    //     // 调用子组件的随机选择方法
+    //     await avatarComponent.RandomSelect();
+    // }
+
+    private void HandleAvatarSelected(string avatar)
+    {
+        userAvatar = avatar;
+        StateHasChanged();
+    }
+
+    private async Task UpdateUserAvatar()
+    {
+        await hubConnection.SendAsync("UpdateUserAvatar", userAvatar);
     }
 
     private async Task CreateGroup()

@@ -1,5 +1,6 @@
 using BlazorChat.Client;
 using BlazorChat.Data;
+using BlazorChat.Migrations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
