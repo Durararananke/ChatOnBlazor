@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ChatOnBlazor.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ChatOnBlazor.props",
+      "PackagePath": "build\\ChatOnBlazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ChatOnBlazor.props",
+      "PackagePath": "buildMultiTargeting\\ChatOnBlazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ChatOnBlazor.props",
+      "PackagePath": "buildTransitive\\ChatOnBlazor.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

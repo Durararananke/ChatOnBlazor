@@ -1,0 +1,70 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.MudDebugAnalyzer = 
+build_property.MudAllowedAttributePattern = 
+build_property.MudIllegalParameters = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = ChatOnBlazor.Client
+build_property.RootNamespace = ChatOnBlazor.Client
+build_property.ProjectDir = F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client
+build_property._RazorSourceGeneratorDebug = 
+
+[F:/Csharp/ChatOnBlazor/ChatOnBlazor.Client/Components/Avatar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBdmF0YXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Csharp/ChatOnBlazor/ChatOnBlazor.Client/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Csharp/ChatOnBlazor/ChatOnBlazor.Client/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Csharp/ChatOnBlazor/ChatOnBlazor.Client/Pages/Auth.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Csharp/ChatOnBlazor/ChatOnBlazor.Client/Pages/ChatChannels.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhdENoYW5uZWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Csharp/ChatOnBlazor/ChatOnBlazor.Client/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Csharp/ChatOnBlazor/ChatOnBlazor.Client/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Csharp/ChatOnBlazor/ChatOnBlazor.Client/Pages/Weather.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2VhdGhlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Csharp/ChatOnBlazor/ChatOnBlazor.Client/RedirectToLogin.razor]
+build_metadata.AdditionalFiles.TargetPath = UmVkaXJlY3RUb0xvZ2luLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Csharp/ChatOnBlazor/ChatOnBlazor.Client/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Um91dGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Csharp/ChatOnBlazor/ChatOnBlazor.Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 

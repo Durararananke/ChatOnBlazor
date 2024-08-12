@@ -1,0 +1,74 @@
+﻿@page "/avatar"
+
+<MudPaper Class="custom-paper" Elevation="1" Square="true">
+    <MudStack Spacing="2">
+        <MudButton OnClick="OnExpandCollapseClick">
+            @if (!string.IsNullOrEmpty(SelectedAvatar))
+            {
+                <MudAvatar Size="Size.Large">
+                    <MudImage Src=@SelectedAvatar></MudImage>
+                </MudAvatar>
+            }
+            else
+            {
+                @* <MudAvatar Size="Size.Large">
+                    <MudImage Src="/avatars/kuromu-2x.svg"></MudImage>
+                </MudAvatar> *@
+                @:Please select Your Avatar
+            }
+            </MudButton>
+        <MudDivider />
+        <MudCollapse Expanded="_expanded">
+            @foreach(var a in AvatarPresets)
+            {
+                <MudAvatar Size="Size.Medium" Square="true">
+                    <MudImage Src=@a></MudImage>
+                </MudAvatar>
+            }
+        </MudCollapse>
+    </MudStack>
+</MudPaper>
+
+<style>
+    .custom-paper {
+        background-color: #efeddf;
+        padding: 16px
+    }
+</style>
+
+@code {
+    [Parameter]
+    public string? SelectedAvatar{ get; set; }
+    [Parameter]
+    public EventCallback<string> OnAvatarSelected{ get; set; }
+    private static readonly List<string> AvatarPresets = new List<string>
+    {
+        "/avatars/bakyura.svg",
+        "/avatars/bakyura-2x.svg",
+        "/avatars/eight.svg",
+        "/avatars/gaki-2x.svg",
+        "/avatars/gg.svg",
+        "/avatars/junsui-2x.svg",
+        "/avatars/kakka.svg",
+        "/avatars/kanra.svg",
+        "/avatars/kuromu-2x.svg"
+    };
+
+    bool _expanded = true;
+
+    // protected override async Task OnInitialiazedAsync()
+    // {
+
+    // }
+
+    private async Task Select(string avatar)
+    {
+        SelectedAvatar = avatar;
+        await OnAvatarSelected.InvokeAsync(avatar);
+    }
+
+    private void OnExpandCollapseClick()
+    {
+        _expanded = !_expanded;
+    }
+}

@@ -1,0 +1,92 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\Csharp\\ChatOnBlazor\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|f:\\csharp\\chatonblazor\\chatonblazor.client\\pages\\chatchannels.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|solutionrelative:chatonblazor.client\\pages\\chatchannels.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|f:\\csharp\\chatonblazor\\chatonblazor.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|solutionrelative:chatonblazor.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C2167DA-28EF-422B-BA65-4403B0DD238F}|ChatOnBlazor\\ChatOnBlazor.csproj|f:\\csharp\\chatonblazor\\chatonblazor\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C2167DA-28EF-422B-BA65-4403B0DD238F}|ChatOnBlazor\\ChatOnBlazor.csproj|solutionrelative:chatonblazor\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|f:\\csharp\\chatonblazor\\chatonblazor.client\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|solutionrelative:chatonblazor.client\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 85,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ChatChannels.razor",
+              "DocumentMoniker": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Pages\\ChatChannels.razor",
+              "RelativeDocumentMoniker": "ChatOnBlazor.Client\\Pages\\ChatChannels.razor",
+              "ToolTip": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Pages\\ChatChannels.razor",
+              "RelativeToolTip": "ChatOnBlazor.Client\\Pages\\ChatChannels.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEwAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-12T14:22:11.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Counter.razor",
+              "DocumentMoniker": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Pages\\Counter.razor",
+              "RelativeDocumentMoniker": "ChatOnBlazor.Client\\Pages\\Counter.razor",
+              "ToolTip": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Pages\\Counter.razor",
+              "RelativeToolTip": "ChatOnBlazor.Client\\Pages\\Counter.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-12T13:56:23.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "ChatOnBlazor\\Hubs\\ChatHub.cs",
+              "ToolTip": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "ChatOnBlazor\\Hubs\\ChatHub.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEQAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T07:03:39.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "ChatOnBlazor.Client\\Layout\\MainLayout.razor",
+              "ToolTip": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "ChatOnBlazor.Client\\Layout\\MainLayout.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-10T16:15:09.489Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "Files": [
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\f28hg6wk55.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\appsettings.Development.json",
+      "PackagePath": "staticwebassets\\appsettings.Development.json"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\appsettings.json",
+      "PackagePath": "staticwebassets\\appsettings.json"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\1999.png",
+      "PackagePath": "staticwebassets\\avatars\\1999.png"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\bakyura-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\bakyura-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\bakyura.svg",
+      "PackagePath": "staticwebassets\\avatars\\bakyura.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\eight.svg",
+      "PackagePath": "staticwebassets\\avatars\\eight.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\gaki-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\gaki-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\gg.svg",
+      "PackagePath": "staticwebassets\\avatars\\gg.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\junsui-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\junsui-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\kakka.svg",
+      "PackagePath": "staticwebassets\\avatars\\kakka.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\kanra-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\kanra-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\kanra.svg",
+      "PackagePath": "staticwebassets\\avatars\\kanra.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\kuromu-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\kuromu-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\kyo-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\kyo-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\letterA.svg",
+      "PackagePath": "staticwebassets\\avatars\\letterA.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\rotchi-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\rotchi-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\saki-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\saki-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\san-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\san-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\setton-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\setton-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\setton.svg",
+      "PackagePath": "staticwebassets\\avatars\\setton.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\sharo-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\sharo-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\tanaka-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\tanaka-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\tanaka.svg",
+      "PackagePath": "staticwebassets\\avatars\\tanaka.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\ya-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\ya-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\zaika-2x.svg",
+      "PackagePath": "staticwebassets\\avatars\\zaika-2x.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\zaika.svg",
+      "PackagePath": "staticwebassets\\avatars\\zaika.svg"
+    },
+    {
+      "Id": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\wwwroot\\avatars\\zawa.svg",
+      "PackagePath": "staticwebassets\\avatars\\zawa.svg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ChatOnBlazor.Client.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ChatOnBlazor.Client.props",
+      "PackagePath": "build\\ChatOnBlazor.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ChatOnBlazor.Client.props",
+      "PackagePath": "buildMultiTargeting\\ChatOnBlazor.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ChatOnBlazor.Client.props",
+      "PackagePath": "buildTransitive\\ChatOnBlazor.Client.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

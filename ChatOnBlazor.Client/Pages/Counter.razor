@@ -1,0 +1,40 @@
+﻿@page "/counter"
+@* @using Markdig *@
+
+
+<PageTitle>Counter</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">Counter</MudText>
+
+<MudText Class="mb-4">Current count: @currentCount</MudText>
+
+<MudButton Color="Color.Primary" Variant="Variant.Filled" @onclick="IncrementCount">Click me</MudButton>
+
+
+<MudContainer>
+    <MudGrid>
+        <MudItem xs="12" sm="6">
+            <MudCard>
+                <MudText Typo="Typo.h6">Markdown Editor</MudText>
+                <!-- Markdown 编辑器 -->
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudCard>
+                <MudText Typo="Typo.h6">Preview</MudText>
+                <!-- Markdown 预览区 -->
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

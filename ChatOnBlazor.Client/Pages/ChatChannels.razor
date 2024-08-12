@@ -1,0 +1,667 @@
+﻿@page "/chat"
+
+@using Microsoft.AspNetCore.Authorization
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ISnackbar Snackbar
+
+@attribute [Authorize]
+
+<MudGrid Spacing="2">
+    @* Left *@
+    <MudItem xs="2">
+        <MudPaper Elevation="0" Height="95%" Style="@($"background-color: {paperBackgroundColor}; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; padding: 16px;")">
+            <!-- 左侧区域内容 -->
+            <MudPaper Elevation="0" Height="95%" Class="d-flex flex-column justify-space-between" Style="@($"background-color: {paperBackgroundColor};")">
+                <MudStack>
+       
+                    @* Create group *@
+                    <MudPaper Elevation="0" Class="pa-3" Style="@($"background-color: {paperBackgroundColor};")">
+                        <MudItem Class="mb-4">
+                            <MudTextField @bind-Value="newGroupName" Label="CreateGroup" Variant="Variant.Text" Clearable="true"
+                                          Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Group" AdornmentColor="Color.Primary"
+                                          Immediate="true" />
+                        </MudItem> 
+                        
+                        <MudItem Class="mb-4">
+                            <MudTextField @bind-Value="newGroupPwd" Label="Password" Variant="Variant.Text" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password" />
+                        </MudItem>
+
+                        <MudItem Class="mb-4">
+                            <MudButton Variant="Variant.Filled" FullWidth="true" @onclick="@CreateGroup" StartIcon="@Icons.Material.Filled.Create" Color="Color.Success">Create</MudButton>
+                        </MudItem>
+                    </MudPaper>
+
+                    <MudPaper Class="pa-3" Elevation="0" Style="@($"background-color: {paperBackgroundColor};")">@* Item 2 *@</MudPaper>
+
+                    @* Join group *@
+                    <MudPaper Elevation="0" Class="pa-3" Style="@($"background-color: {paperBackgroundColor};")">
+                        <MudItem Class="mb-4">
+                            <MudAutocomplete T="string" Label="JoinGroup" @bind-Value="groupName" SearchFunc="@Search1"
+                                             ResetValueOnEmptyText="@resetValueOnEmptyText"
+                                             CoerceText="@coerceText" CoerceValue="@coerceValue" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.GroupAdd" AdornmentColor="Color.Secondary" />
+                        </MudItem>
+
+                        <MudItem Class="mb-4">
+                            <MudTextField @bind-Value="groupPwd" Label="Password" Variant="Variant.Text" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password" />
+                        </MudItem>
+
+                        <MudItem Class="mb-4">
+                            <MudButton Variant="Variant.Filled" FullWidth="true" @onclick="@JoinGroup" StartIcon="@Icons.Material.Filled.PersonAddAlt1" Color="Color.Tertiary">Join</MudButton>
+                        </MudItem>
+                    </MudPaper>
+                    
+                    <MudPaper Class="pa-3" Elevation="0"  Style="@($"background-color: {paperBackgroundColor};")">@* Item 4 *@</MudPaper>
+
+                    @* Joined group *@
+                    <MudPaper Elevation="0" Class="pa-3" Style="@($"background-color: {paperBackgroundColor};")">
+
+                        <MudExpansionPanels Elevation="0" Style="@($"background-color: {paperBackgroundColor};")">
+                            <MudExpansionPanel Style="@($"background-color: {paperBackgroundColor};")">
+                                <TitleContent>
+                                    <div class="d-flex">
+                                        <MudIcon Icon="@Icons.Material.Filled.Groups3" class="mr-3" Color="Color.Primary"></MudIcon>
+                                        <MudText><strong>Groups</strong></MudText>
+                                    </div>
+                                </TitleContent>
+                                <ChildContent>
+                                    <MudList T="string">
+                                        @foreach(var g in joinedGroups)
+                                        {
+
+                                            <MudListItem Icon="@Icons.Material.Filled.Groups" @onclick="()=>{ChangeGroup(g);Snackbar.Add(click, Severity.Info);}">
+                                                    <div class="d-flex">
+                                                    <MudText Class="mt-1">@g</MudText>
+                                                    <MudBadge Content="messagesInGroup[g].Count" Color="Color.Primary" Overlap="true" Class="d-flex ml-auto">
+                                                        <MudIcon Icon="@Icons.Material.Filled.Email" Color="Color.Default" />
+                                                    </MudBadge>
+                                                </div>
+                                                </MudListItem>
+                                            
+                                            <MudDivider DividerType="DividerType.Inset" />
+                                        }
+                                    </MudList>
+                                </ChildContent>
+                            </MudExpansionPanel>
+                        </MudExpansionPanels>
+
+                    </MudPaper>
+                </MudStack>
+                
+                <MudSpacer />
+                
+               @*  Userprofile *@
+
+                    <MudStack Row="true">
+                        <MudTooltip Text="Click to change color" Arrow="true" Placement="Placement.Top" Color="Color.Secondary">
+                            <MudAvatar Style="@($"background-color: {GetAvatarColorForUser(userName)};")" Size="Size.Large" @onclick="@(()=>ChangeAvatarColor(userName))">
+                                @GetFirstChar(userName)
+                            </MudAvatar>
+                        </MudTooltip>
+                        <MudStack Justify="Justify.Center" Spacing="0">
+                            <MudText Typo="Typo.body1">@userName</MudText>
+                            <MudText Typo="Typo.body2">Should be Email</MudText>
+                        </MudStack>
+                    </MudStack>
+                
+                
+            </MudPaper>
+        </MudPaper>
+    </MudItem>
+
+   @*  Middle *@
+    <MudItem xs="8">
+        <MudPaper Elevation="0" Height="100%" Style="@($"background-color: {paperBackgroundColor};position: relative;")">
+            <!-- 中间区域内容 -->
+            <div style="overflow-y: auto; max-height: 80vh;">
+            <MudPaper Elevation="0" Style="@($"background-color: {paperBackgroundColor};")">
+                <div class="d-flex align-center justify-center">   
+                    @* <MudText Typo="Typo.h3" GutterBottom="true" Align="Align.Center">@selectedGroup</MudText> *@
+                        <MudMenu Label="@selectedGroup" Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.QuestionAnswer" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" IconColor="Color.Secondary" FullWidth="true">
+                        <MudMenuItem @onclick="()=>LeaveGroup()">Leave</MudMenuItem>
+                    </MudMenu>
+                </div>
+                <div>
+                    <ul style="list-style-type: none; padding: 0;">
+                        @foreach (var msg in display_messagesInGroup)
+                        {
+                            <li class="mb-2" style="display: flex; justify-content: flex-start;">
+                                <div class="py-2 px-4 mx-4 rounded-xl message-container"
+                                        style="@($"background-color: {listItemBackgroundColor}; border: 1px solid lightgray; max-width: 70%;")">
+                                    <MudPaper Class="pa-2" Elevation="0">
+                                        <MudStack Row="true">
+
+                                            <MudTooltip Text="@msg.userName" Arrow="true" Placement="Placement.Top" >
+                                                <MudAvatar Style="@($"background-color: {GetAvatarColorForUser(msg.userName)};")" Size="Size.Medium">
+                                                    @GetFirstChar(msg.userName)
+                                                </MudAvatar>
+                                            </MudTooltip>
+
+                                            <MudStack Justify="Justify.Center" Spacing="0">
+                                                <MudText Typo="Typo.h6">
+                                                    @msg.message
+                                                </MudText>
+                                            </MudStack>
+
+                                        </MudStack>
+                                    </MudPaper>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                    
+
+            </MudPaper>
+           </div>
+
+           @* Chat Box *@
+            <div class="py-4 px-6 mx-4 rounded-t-xl" 
+                 Style="@($"background-color: {listItemBackgroundColor}; border: 1px solid lightgray;  position: fixed; bottom: 0; width: 50%; left: 52%; transform: translateX(-50%); height: 150px;")">
+                 <MudStack>
+                    <MudPaper Class="pa-1" Elevation="0"></MudPaper>
+                    <MudStack Row="true">
+                        @* <MudText Align="Align.Center">.rounded-ts-xl</MudText> *@
+                        <MudTextField @bind-Value="message" Label="Reply to Ghoti..." Variant="Variant.Text" Clearable="true" Immediate="true" AutoGrow MaxLines="3" @onkeyup="HandleKeyPress" />
+
+
+                        <MudStack Justify="Justify.Center" Spacing="3">
+                            <MudFab Variant="Variant.Filled" @onclick="()=>SendMessageGroup()" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary" Size="Size.Medium">Send</MudFab>
+                            @* <MudFab Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Image" Color="Color.Secondary" Size="Size.Medium">Send</MudFab> *@
+                            <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
+                                <ActivatorContent>
+                                    <MudFab Color="Color.Success"
+                                            StartIcon="@Icons.Material.Filled.AttachFile" Size="Size.Medium" />
+                                </ActivatorContent>
+                            </MudFileUpload>
+                        </MudStack>
+                    </MudStack>
+                 </MudStack>   
+            </div>
+
+
+        </MudPaper>
+    </MudItem>
+
+    @* Right *@
+    <MudItem xs="2">
+        <MudPaper Elevation="0" Height="95%" Style="@($"background-color: {paperBackgroundColor};")">
+            <!-- 嵌套的 Grid -->
+            <MudGrid Spacing="0" Style="height: calc(100vh - 10px)">
+                <MudItem xs="12">
+
+                    @* Members *@
+                    <MudPaper Elevation="0" Height=" 100%" Class="justify-center mud-width-full py-8 " Style="@($"background-color: {paperBackgroundColor};")">
+                        <MudText Typo="Typo.h5" GutterBottom="true" Align="Align.Center">Members</MudText>
+
+                            <MudStack Spacing="2">
+                                <MudButton OnClick="OnExpandCollapseClick">
+                                    <MudAvatarGroup Max="5" Spacing="3" MaxColor="Color.Primary">
+                                        @foreach (var m in display_GroupMembers)
+                                        {
+                                            <MudAvatar Style="@($"background-color: {GetAvatarColorForUser(m)};")" Size="Size.Medium">
+                                                @GetFirstChar(m)
+                                            </MudAvatar>
+                                        }
+                                            <MudAvatar>
+                                                <MudImage Src="/avatars/zaika-2x.svg" />
+                                            </MudAvatar>
+                                        <MudAvatar>
+                                            <MudImage Src="/avatars/gg.svg" />
+                                        </MudAvatar>
+                                        <MudAvatar>
+                                        <MudImage Src="/avatars/kanra-2x.svg" />
+                                        </MudAvatar>
+              
+                                    </MudAvatarGroup>
+                                </MudButton>
+                                <MudDivider />
+                                <MudCollapse Expanded="_expanded">
+
+                                    <MudList T="string">
+                                        @foreach (var m in display_GroupMembers)
+                                        {
+                                            <MudListItem>
+                                                <MudStack Row="true">
+                                                <MudAvatar Style="@($"background-color: {GetAvatarColorForUser(m)};")" Size="Size.Medium">
+                                                        @GetFirstChar(m)
+                                                    </MudAvatar>
+                                                <MudStack Justify="Justify.Center" Spacing="0">
+                                                    <MudText Typo="Typo.body1">@m</MudText>
+                                                </MudStack>
+                                            </MudStack>
+                                            </MudListItem>
+                                            <MudDivider />
+                                        }
+
+                                        <MudListItem>
+                                            <MudStack Row="true">
+                                                <MudBadge Icon="@Icons.Material.Filled.Lock" Color="Color.Error" Overlap="true" Bordered="true">
+
+                                                    <MudAvatar Size="Size.Medium">
+                                                        <MudImage Src="/avatars/zaika-2x.svg" />
+                                                    </MudAvatar>
+                                                </MudBadge>
+                                                <MudStack Justify="Justify.Center" Spacing="0">
+                                                    <MudText Typo="Typo.body1">Zaika</MudText>
+                                                </MudStack>
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudDivider />
+
+                                        <MudListItem>
+                                            <MudStack Row="true">
+                                                <MudBadge Icon="@Icons.Material.Filled.Lock" Color="Color.Error" Overlap="true" Bordered="true">
+
+                                                    <MudAvatar Size="Size.Medium">
+                                                        <MudImage Src="/avatars/gg.svg" />
+                                                    </MudAvatar>
+                                                </MudBadge>
+                                                <MudStack Justify="Justify.Center" Spacing="0">
+                                                <MudText Typo="Typo.body1">Gg</MudText>
+                                                </MudStack>
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudDivider />
+
+                                        <MudListItem>
+                                            <MudStack Row="true">
+                                                <MudBadge Icon="@Icons.Material.Filled.Lock" Color="Color.Error" Overlap="true" Bordered="true">
+                                                    <MudAvatar Size="Size.Medium">
+                                                        <MudImage Src="/avatars/kanra-2x.svg" />
+                                                    </MudAvatar>
+                                                </MudBadge>
+                                                <MudStack Justify="Justify.Center" Spacing="0">
+                                                <MudText Typo="Typo.body1">kanra</MudText>
+                                                </MudStack>
+                                            </MudStack>
+                                        </MudListItem>
+                                        <MudDivider />
+
+                                    </MudList>
+
+                                </MudCollapse>
+                            </MudStack>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudPaper Height="100%" Elevation="0" Class="d-flex align-center justify-center mud-width-full py-8" Style="@($"background-color: {paperBackgroundColor};")">
+                        
+                      @*   @foreach(var g in joinedGroups)
+                        {
+        
+                            <h3>@g</h3>
+                            <h5>Members: </h5>
+                            <ul>
+                            @if (groupMembers?.ContainsKey(g) == true)
+                            {
+                                @foreach (var member in groupMembers[g])
+                                {
+                                    <li>
+                                    @(member)
+                            
+                                    </li>
+                          
+                                }
+                            }
+                            </ul>
+
+
+                            <br>
+                            <h5>Messages: </h5>
+                            <ul>
+                                @foreach (var msg in messagesInGroup[g])
+                                {
+                                    <li class="message">
+                                        
+                                        <div class="message-content">
+                                            <div>
+                                                <span class="username">@msg.userName</span>
+                                                
+                                            </div>
+                                            <div class="message-text">@msg.message</div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+
+                            <h5>display_Messages: </h5>
+                            <ul>
+                                @foreach (var msg in display_messagesInGroup)
+                                {
+                                    <li class="message">
+
+                                        <div class="message-content">
+                                            <div>
+                                                <span class="username">@msg.userName</span>
+
+                                            </div>
+                                            <div class="message-text">@msg.message</div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+
+                        }
+
+                        xs=12 sm=6 *@
+                    </MudPaper>
+                </MudItem>
+                @* <MudItem xs="12">
+                    <MudPaper Height="100%" Class="d-flex align-end justify-center mud-width-full py-8"></MudPaper>
+                </MudItem> *@
+            </MudGrid>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+@if (_files != null)
+{
+    <MudText Typo="@Typo.h6">@_files.Count() File@(_files.Count() == 1 ? "" : "s"):</MudText>
+    <MudList T="string">
+        @foreach (var file in _files)
+        {
+            <MudListItem Icon="@Icons.Material.Filled.AttachFile" @key="@file">
+                @file.Name <code>@file.Size bytes</code>
+            </MudListItem>
+        }
+    </MudList>
+}
+
+@code {
+    private HubConnection? hubConnection;
+    private bool isConnected = false;
+    private string? userName;
+    private string? message;
+    private string? groupName;
+    private string? groupPwd;
+    private string? newGroupName;
+    private string? newGroupPwd;
+    private string? selectedGroup;
+    private List<string> existedGroups = new List<string>();
+    private List<string> joinedGroups = new List<string>();
+    private List<string> systeMessages = new List<string>();
+    private Dictionary<string, List<string>> groupMembers = new Dictionary<string, List<string>>();
+    private Dictionary<string, List<(string userName, string message, TimeOnly timeStamp)>> messagesInGroup 
+        = new Dictionary<string, List<(string userName, string message, TimeOnly timeStamp)>>();
+
+    private List<string> display_GroupMembers = new List<string>();
+    private List<(string userName, string message, TimeOnly timeStamp)> display_messagesInGroup = new List<(string userName, string message, TimeOnly timeStamp)>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetUserName();
+
+        hubConnection=new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+            .Build();
+
+        hubConnection.On<string, string, string, TimeOnly>("ReceiveMessage", (groupName, userName, message, timeStamp) =>
+        {
+            if(!messagesInGroup.ContainsKey(groupName))
+            {
+                messagesInGroup[groupName] = new List<(string, string, TimeOnly)>();
+            }
+            messagesInGroup[groupName].Add((userName, message, timeStamp));
+
+            if (groupName == selectedGroup)
+            {
+                display_messagesInGroup = messagesInGroup[groupName];
+            }
+
+            InvokeAsync(StateHasChanged);
+        });
+
+        hubConnection.On<string, string, DateTime>("SysteMessage", (userName, message, timeStamp) =>
+        {
+            // systeMessages.Add($"[{timeStamp}] {userName}: {message}");
+            // InvokeAsync(StateHasChanged);
+
+            var formattedMessage = $"[{timeStamp}] {userName}: {message}";
+            InvokeAsync(() =>
+            {
+                Snackbar.Add(formattedMessage, Severity.Info);
+            });
+        });
+
+        hubConnection.On<List<string>>("UpdateGroupList", groupList =>
+        {
+            existedGroups = groupList;
+            InvokeAsync(StateHasChanged);
+        });
+
+        hubConnection.On<string, List<string>>("UpdateGroupMember", (groupName, members) =>
+        {
+            if(!groupMembers.ContainsKey(groupName))
+            {
+                groupMembers[groupName] = new List<string>();
+            }
+            groupMembers[groupName] = members;
+
+            if(groupName==selectedGroup)
+            {
+                display_GroupMembers = groupMembers[groupName];
+            }
+
+            InvokeAsync(StateHasChanged);
+        });
+
+        hubConnection.On<bool, string>("JoinResult", (success, groupName) =>
+        {
+            if(success&&!joinedGroups.Contains(groupName))
+            {
+                ChangeGroup(groupName);
+                joinedGroups.Add(selectedGroup);
+                if(!messagesInGroup.ContainsKey(groupName))
+                {
+                    messagesInGroup[groupName] = new List<(string, string, TimeOnly)>();
+                }
+            }
+            InvokeAsync(StateHasChanged);
+        });
+
+        hubConnection.On<string>("LeaveResult", groupName =>
+        {
+            joinedGroups.Remove(groupName);
+            messagesInGroup.Remove(groupName);
+            selectedGroup = string.Empty;
+            display_GroupMembers.Clear();
+            display_messagesInGroup.Clear();
+            InvokeAsync(StateHasChanged);
+        });
+
+
+        await hubConnection.StartAsync();
+        isConnected = true;
+    }
+
+    #region Group
+
+    private async Task CreateGroup()
+    {
+        if(!string.IsNullOrEmpty(newGroupName)&&!string.IsNullOrEmpty(newGroupPwd))
+        {
+            await hubConnection.SendAsync("CreateGroup", newGroupName, newGroupPwd);
+            existedGroups.Add(newGroupName);
+            newGroupName = string.Empty;
+            newGroupPwd = string.Empty;
+        }
+    }
+
+    private async Task JoinGroup()
+    {
+        await hubConnection.SendAsync("JoinGroup", groupName, groupPwd);
+        groupPwd = string.Empty;
+    }
+
+    private async Task LeaveGroup()
+    {
+        await hubConnection.SendAsync("LeaveGroup", selectedGroup);
+        groupPwd = string.Empty;
+    }
+
+    #endregion
+
+    private async Task SendMessageGroup()
+    {
+        if (!string.IsNullOrEmpty(message) && !string.IsNullOrEmpty(selectedGroup))
+        {
+            await hubConnection.SendAsync("SendMessageGroup", selectedGroup, message);
+            message = string.Empty;
+        }
+    }
+
+    private async Task HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await SendMessageGroup();
+        }
+    }
+
+    private async Task GetUserName()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        userName = user.Identity?.Name;
+    }
+
+    private async Task ChangeGroup(string groupName)
+    {
+        selectedGroup = groupName;
+        display_GroupMembers = groupMembers[selectedGroup];
+        display_messagesInGroup = messagesInGroup[selectedGroup];
+    }
+
+    public bool IsConnected =>
+        hubConnection?.State == HubConnectionState.Connected;
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+    }
+}
+
+
+@* Color *@
+@code{
+    [CascadingParameter(Name ="paper")] 
+    string paperBackgroundColor { get; set; }
+    [CascadingParameter(Name ="listItem")]
+    string listItemBackgroundColor { get; set; }
+
+    bool isShow;
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+    // private string avatarColor => _avatarColor ??= GetRandomColor();
+    // private string _avatarColor;
+
+    private Dictionary<string, string> userAvatarColors = new();
+    private Random _random = new Random();
+
+    private string GetRandomColor()
+    {
+        int r = _random.Next(256);
+        int g = _random.Next(256);
+        int b = _random.Next(256);
+
+        // 将 RGB 转换为十六进制颜色代码
+        return $"#{r:X2}{g:X2}{b:X2}";
+    }
+
+    private string GetAvatarColorForUser(string userName)
+    {
+        if (!userAvatarColors.ContainsKey(userName))
+        {
+            userAvatarColors[userName] = GetRandomColor();
+        }
+        return userAvatarColors[userName];
+    }
+
+    private void ChangeAvatarColor(string userName)
+    {
+        userAvatarColors[userName] = GetRandomColor();
+        InvokeAsync(StateHasChanged);
+    }
+
+    private string GetFirstChar(string name)
+    {
+        if (!string.IsNullOrEmpty(name))
+        {
+            string firstChar = name[0].ToString();
+            return firstChar;
+        }
+        else
+        {
+            Snackbar.Add("The username cannot be null or empty.", Severity.Error);
+            return string.Empty; 
+        }
+    }
+
+    void ButtonTestclick()
+    {
+        @if (isShow)
+        {
+            isShow = false;
+            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+            PasswordInput = InputType.Password;
+        }
+        else
+        {
+            isShow = true;
+            PasswordInputIcon = Icons.Material.Filled.Visibility;
+            PasswordInput = InputType.Text;
+        }
+    }
+}
+
+@* MudComponent *@
+@code{
+    #region Autocomplete
+
+    private bool resetValueOnEmptyText;
+    private bool coerceText;
+    private bool coerceValue;
+
+    private async Task<IEnumerable<string>> Search1(string value, CancellationToken token)
+    {
+        // In real life use an asynchronous function for fetching data from an api.
+        await Task.Delay(5, token);
+
+        // if text is null or empty, show complete list
+        if (string.IsNullOrEmpty(value))
+            return existedGroups;
+        return existedGroups.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
+    }
+
+    #endregion
+
+    #region Collapse
+
+    bool _expanded = false;
+
+    private void OnExpandCollapseClick()
+    {
+        _expanded = !_expanded;
+    }
+
+    #endregion
+}
+
+@code{
+    public string click = "Click!";
+}
+
+@* UploadFile *@
+@code
+{
+    IList<IBrowserFile> _files = new List<IBrowserFile>();
+    private void UploadFiles(IBrowserFile file)
+    {
+        _files.Add(file);
+        //TODO upload the files to the server
+    }
+}

@@ -1,0 +1,114 @@
+﻿@page "/Account/Manage"
+
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Identity
+@using ChatOnBlazor.Data
+
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject IdentityUserAccessor UserAccessor
+@inject IdentityRedirectManager RedirectManager
+
+<PageTitle>Profile</PageTitle>
+
+<MudText Typo="Typo.h6" GutterBottom="true">Profile</MudText>
+
+<StatusMessage />
+
+<EditForm Model="Input" FormName="profile" OnValidSubmit="OnValidSubmitAsync" method="post">
+    <DataAnnotationsValidator />
+
+    <MudGrid>
+        @* <MudItem md="12">
+            <MudStaticTextField Value="@username" Label="Username" Disabled="true" Placeholder="Please choose your username." />
+        </MudItem> *@
+
+        <MudItem md="12">
+            <MudStaticTextField For="@(() => Input.UserName)" @bind-Value="Input.UserName"
+                                Label="UserName" HelperText="Please enter your username."
+                                UserAttributes="@(new() { { "autocomplete", "tel-national" } } )" />
+        </MudItem>
+
+        <MudItem md="12">
+            <MudStaticTextField For="@(() => Input.PhoneNumber)" @bind-Value="Input.PhoneNumber"
+                                Label="Phone Number" HelperText="Please enter your phone number."
+                                UserAttributes="@(new() { { "autocomplete", "tel-national" } } )" />
+        </MudItem>
+        <MudItem md="12">
+            <MudStaticButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" FormAction="FormAction.Submit">Save</MudStaticButton>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+    private ApplicationUser user = default!;
+    private string? username;
+    private string? phoneNumber;
+
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    [SupplyParameterFromForm]
+    private InputModel Input { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await UserAccessor.GetRequiredUserAsync(HttpContext);
+        username = await UserManager.GetUserNameAsync(user);
+        phoneNumber = await UserManager.GetPhoneNumberAsync(user);
+
+        Input.PhoneNumber ??= phoneNumber;
+        Input.UserName ??= username;
+    }
+
+    private async Task OnValidSubmitAsync()
+    {
+        bool hasChanged = false;
+        if (Input.PhoneNumber != phoneNumber)
+        {
+            var setPhoneResult = await UserManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+            if (!setPhoneResult.Succeeded)
+            {
+                RedirectManager.RedirectToCurrentPageWithStatus("Error: Failed to set phone number.", HttpContext);
+            }
+            hasChanged = true;
+        }
+
+        if (Input.UserName != username)
+        {
+            var setUserNameResult = await UserManager.SetUserNameAsync(user, Input.UserName);
+            if (!setUserNameResult.Succeeded)
+            {
+                RedirectManager.RedirectToCurrentPageWithStatus("Error: Failed to set phone number.", HttpContext);
+            }
+            hasChanged = true;
+        }
+
+        if (hasChanged)
+        {
+            await SignInManager.RefreshSignInAsync(user);
+            RedirectManager.RedirectToCurrentPageWithStatus("Success: Your profile has been updated", HttpContext);
+        }
+        else
+        {
+            RedirectManager.RedirectToCurrentPageWithStatus("Info: No changes were made to your profile", HttpContext);
+        }
+    }
+
+    private sealed class InputModel
+    {
+        public string? PhoneNumber { get; set; }
+
+        // [Phone]
+        // [Display(Name = "Phone number")]
+        // public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [MinLength(3, ErrorMessage = "The name needs to be at least 3 characters.")]
+        [Display(Name = "User name")]
+        public string? UserName { get; set; }
+
+        [Display(Name = "Avatar")]
+        public string? Avatar { get; set; }
+    }
+}
