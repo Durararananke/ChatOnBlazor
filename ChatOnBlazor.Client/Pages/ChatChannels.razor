@@ -7,9 +7,9 @@
 
 @attribute [Authorize]
 
-<MudGrid Spacing="2">
+<MudGrid Spacing="2" >
     @* Left *@
-    <MudItem xs="2">
+    <MudItem xs="2" Style="@(isFullWidth ? "display: none;" : "")">
         <MudPaper Elevation="0" Height="95%" Style="@($"background-color: {paperBackgroundColor}; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; padding: 16px;")">
             <!-- 左侧区域内容 -->
             <MudPaper Elevation="0" Height="95%" Class="d-flex flex-column justify-space-between" Style="@($"background-color: {paperBackgroundColor};")">
@@ -110,7 +110,7 @@
     </MudItem>
 
    @*  Middle *@
-    <MudItem xs="8">
+    <MudItem xs="@(isFullWidth ? 12 : 8)">
         <MudPaper Elevation="0" Height="100%" Style="@($"background-color: {paperBackgroundColor};position: relative;")">
             <!-- 中间区域内容 -->
             <div style="overflow-y: auto; max-height: 80vh;">
@@ -120,6 +120,13 @@
                         <MudMenu Label="@selectedGroup" Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.QuestionAnswer" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" IconColor="Color.Secondary" FullWidth="true">
                         <MudMenuItem @onclick="()=>LeaveGroup()">Leave</MudMenuItem>
                     </MudMenu>
+
+                        <MudIconButton OnClick="@ToggleWidth" Color="Color.Secondary" Size="Size.Large"
+                                       Icon="@(isFullWidth ? @Icons.Material.Filled.FullscreenExit : @Icons.Material.Filled.Fullscreen)"
+                                   >
+                            @* @(isFullWidth ? "Exit Full Width" : "Full Width") *@
+                        </MudIconButton>
+
                 </div>
                 <div>
                     <ul style="list-style-type: none; padding: 0;">
@@ -184,7 +191,7 @@
     </MudItem>
 
     @* Right *@
-    <MudItem xs="2">
+    <MudItem xs="2" Style="@(isFullWidth ? "display: none;" : "")">
         <MudPaper Elevation="0" Height="95%" Style="@($"background-color: {paperBackgroundColor};")">
             <!-- 嵌套的 Grid -->
             <MudGrid Spacing="0" Style="height: calc(100vh - 10px)">
@@ -355,7 +362,7 @@
     </MudItem>
 </MudGrid>
 
-@if (_files != null)
+@* @if (_files != null)
 {
     <MudText Typo="@Typo.h6">@_files.Count() File@(_files.Count() == 1 ? "" : "s"):</MudText>
     <MudList T="string">
@@ -366,7 +373,7 @@
             </MudListItem>
         }
     </MudList>
-}
+} *@
 
 @code {
     private HubConnection? hubConnection;
@@ -545,7 +552,6 @@
     }
 }
 
-
 @* Color *@
 @code{
     [CascadingParameter(Name ="paper")] 
@@ -620,6 +626,18 @@
 
 @* MudComponent *@
 @code{
+    #region Toggle Width
+
+    private bool isFullWidth = false;
+
+    private void ToggleWidth()
+    {
+        isFullWidth = !isFullWidth;
+        StateHasChanged();
+    }
+
+    #endregion
+
     #region Autocomplete
 
     private bool resetValueOnEmptyText;
@@ -651,6 +669,7 @@
     #endregion
 }
 
+@* Test *@
 @code{
     public string click = "Click!";
 }

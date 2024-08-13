@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xzWwpAz5MmpeTiwahHxSVIR0uGxQUgKdbQleD3gjJBw=",
+  "Hash": "EhYGE4CWVrQMlLbkiS8cYfDOrUW8MtOu/tAsk0l6F/c=",
   "Source": "ChatOnBlazor",
   "BasePath": "_content/ChatOnBlazor",
   "Mode": "Default",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\extensions.mudblazor.staticinput\\2.1.1\\staticwebassets\\NavigationObserver.js"
     },
     {
-      "Identity": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\8.0.7\\staticwebassets\\AuthenticationService.js",
+      "Identity": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\8.0.8\\staticwebassets\\AuthenticationService.js",
       "SourceId": "Microsoft.AspNetCore.Components.WebAssembly.Authentication",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\8.0.7\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\8.0.8\\staticwebassets\\",
       "BasePath": "_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication",
       "RelativePath": "AuthenticationService.js",
       "AssetKind": "All",
@@ -71,7 +71,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\8.0.7\\staticwebassets\\AuthenticationService.js"
+      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\8.0.8\\staticwebassets\\AuthenticationService.js"
     },
     {
       "Identity": "C:\\Users\\Danger!\\.nuget\\packages\\mudblazor\\7.6.0\\staticwebassets\\MudBlazor.min.css",
@@ -147,7 +147,7 @@
       "AssetTraitValue": "boot",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\8.0.7\\build\\net8.0\\blazor.webassembly.js"
+      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\8.0.8\\build\\net8.0\\blazor.webassembly.js"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\ChatOnBlazor.Client.pdb",
@@ -357,6 +357,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.7\\runtimes\\browser-wasm\\native\\icudt_no_CJK.dat"
+    },
+    {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Markdig.wasm",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Markdig.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\webcil\\Markdig.wasm"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Authorization.wasm",
@@ -4482,6 +4501,25 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Security.Cryptography.wasm"
     },
     {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\332bsiy8qn.gz",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/blazor.webassembly.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js"
+    },
+    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\3afajrjaui.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -5375,6 +5413,25 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Runtime.Serialization.Formatters.wasm"
     },
     {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\dnwmvwz1ir.gz",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Markdig.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Markdig.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Markdig.wasm"
+    },
+    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\dpmiy7okbl.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -5449,25 +5506,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Win32.Registry.wasm"
-    },
-    {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\f28hg6wk55.gz",
-      "SourceId": "ChatOnBlazor.Client",
-      "SourceType": "Project",
-      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/blazor.webassembly.js.gz",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\f6k70ppg2t.gz",

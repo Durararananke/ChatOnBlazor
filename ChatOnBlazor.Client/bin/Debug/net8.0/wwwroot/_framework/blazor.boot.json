@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ChatOnBlazor.Client",
   "resources": {
-    "hash": "sha256-/jSK3d7FdHkaGsI6cOIEVAmr5duW6pC7SwiFPoDdmZM=",
+    "hash": "sha256-i0m/xrWm/xdTSWP2Nd5eq8NvO2/sJjGgYEZ6xXpqUJs=",
     "jsModuleNative": {
       "dotnet.native.8.0.7.plrhyhtliz.js": "sha256-tFsxPBbhkdn6GKNBKvCRLzrfAHdyM86odYTe0MtrwMk="
     },
@@ -17,6 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
+      "Markdig.wasm": "sha256-Jv9S5coLP28fMUd+sd72uOfd5e3pWx+IFMRNtR/lykc=",
       "Microsoft.AspNetCore.Authorization.wasm": "sha256-tZ3Z0q6xQTgUxlWgiWvzS4SBQeBqETtRGtUWvVaU31w=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-O1efzZ+VlmJ3lOWndJZV5tR5TGF3PS5viT8tqgf8wRU=",
       "Microsoft.AspNetCore.Components.Authorization.wasm": "sha256-BCPKMbkDKppx2pgC6nZbJaAlm3G8ykAYqS28aHPVIy0=",
@@ -221,10 +222,10 @@
       "mscorlib.wasm": "sha256-fLbZiSHBNdpHoh4EgRqMaNP5NQyIK5TEj6AXFLqo8m8=",
       "netstandard.wasm": "sha256-d4xbAE8qrKq5euUoZHPO+jkYPjlCYBzUew45MKsYKic=",
       "System.Private.CoreLib.wasm": "sha256-8yi6NcX1lkNQgV4WKjnMBYIZyKh4P+OXnXVQmgxGZD4=",
-      "ChatOnBlazor.Client.wasm": "sha256-P8/bIO2goT/O0YvQglQ8bF9Fwc+gbd7buUx46S8U1gQ="
+      "ChatOnBlazor.Client.wasm": "sha256-Tewr/k2Qq73WMlkQYACiKKkFr6Y77f9INyilJlruecU="
     },
     "pdb": {
-      "ChatOnBlazor.Client.pdb": "sha256-0GndovGgKGzCHyJdKCoD74z4/R36GheO1WIAaRMXzAs="
+      "ChatOnBlazor.Client.pdb": "sha256-7jwwTB9VG1Bld9nVB+u8ivrPdKKU9dksc6h7gWpHE9Y="
     }
   },
   "cacheBootResources": true,

@@ -654,6 +654,7 @@ F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\ChatOnBlazor.Client.
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\ChatOnBlazor.Client.AssemblyInfo.cs
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\ChatOnBlazor.Client.csproj.CoreCompileInputs.cache
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\ChatOnBlazor.Client.MvcApplicationPartsAssemblyInfo.cache
+F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\ChatOnBlazor.Client.sourcelink.json
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\webcil\Microsoft.AspNetCore.Authorization.wasm
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\webcil\Microsoft.AspNetCore.Components.wasm
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\webcil\Microsoft.AspNetCore.Components.Authorization.wasm
@@ -869,7 +870,6 @@ F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\staticwebassets\msbu
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.ChatOnBlazor.Client.props
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\staticwebassets.pack.json
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\scopedcss\bundle\ChatOnBlazor.Client.styles.css
-F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\compressed\f28hg6wk55.gz
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\compressed\jb3uhhasul.gz
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\compressed\p8maigduqv.gz
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\compressed\swqbo4vdr3.gz
@@ -1091,3 +1091,9 @@ F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\ChatOnBlazor.Client.
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\refint\ChatOnBlazor.Client.dll
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\ChatOnBlazor.Client.pdb
 F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\ref\ChatOnBlazor.Client.dll
+F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\bin\Debug\net8.0\wwwroot\_framework\Markdig.wasm
+F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\bin\Debug\net8.0\wwwroot\_framework\Markdig.wasm.gz
+F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\bin\Debug\net8.0\Markdig.dll
+F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\webcil\Markdig.wasm
+F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\compressed\332bsiy8qn.gz
+F:\Csharp\ChatOnBlazor\ChatOnBlazor.Client\obj\Debug\net8.0\compressed\dnwmvwz1ir.gz

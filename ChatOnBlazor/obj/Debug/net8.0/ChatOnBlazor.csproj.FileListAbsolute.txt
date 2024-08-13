@@ -163,6 +163,7 @@ F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\ChatOnBlazor.AssemblyInfoIn
 F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\ChatOnBlazor.AssemblyInfo.cs
 F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\ChatOnBlazor.csproj.CoreCompileInputs.cache
 F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\ChatOnBlazor.MvcApplicationPartsAssemblyInfo.cache
+F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\ChatOnBlazor.sourcelink.json
 F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\staticwebassets.build.json
 F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\staticwebassets.development.json
 F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\staticwebassets\msbuild.ChatOnBlazor.Microsoft.AspNetCore.StaticWebAssets.props
@@ -177,3 +178,4 @@ F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\refint\ChatOnBlazor.dll
 F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\ChatOnBlazor.pdb
 F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\ChatOnBlazor.genruntimeconfig.cache
 F:\Csharp\ChatOnBlazor\ChatOnBlazor\obj\Debug\net8.0\ref\ChatOnBlazor.dll
+F:\Csharp\ChatOnBlazor\ChatOnBlazor\bin\Debug\net8.0\Markdig.dll
