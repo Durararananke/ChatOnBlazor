@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EhYGE4CWVrQMlLbkiS8cYfDOrUW8MtOu/tAsk0l6F/c=",
+  "Hash": "0KZgpsI3fCcMe62owudOzeoAybS5wQ99Lz0N4uov/CQ=",
   "Source": "ChatOnBlazor",
   "BasePath": "_content/ChatOnBlazor",
   "Mode": "Default",
@@ -204,7 +204,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.7\\runtimes\\browser-wasm\\native\\dotnet.js"
+      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.8\\runtimes\\browser-wasm\\native\\dotnet.js"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js.map",
@@ -223,15 +223,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.7\\runtimes\\browser-wasm\\native\\dotnet.js.map"
+      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.8\\runtimes\\browser-wasm\\native\\dotnet.js.map"
     },
     {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.7.plrhyhtliz.js",
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.8.o96xhu2nkx.js",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
       "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
       "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.8.0.7.plrhyhtliz.js",
+      "RelativePath": "_framework/dotnet.native.8.0.8.o96xhu2nkx.js",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -242,7 +242,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.7\\runtimes\\browser-wasm\\native\\dotnet.native.js"
+      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.8\\runtimes\\browser-wasm\\native\\dotnet.native.js"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.wasm",
@@ -261,15 +261,15 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.7\\runtimes\\browser-wasm\\native\\dotnet.native.wasm"
+      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.8\\runtimes\\browser-wasm\\native\\dotnet.native.wasm"
     },
     {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.7.h4ypv8fn0s.js",
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.8.y79z7p15wa.js",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
       "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
       "BasePath": "/",
-      "RelativePath": "_framework/dotnet.runtime.8.0.7.h4ypv8fn0s.js",
+      "RelativePath": "_framework/dotnet.runtime.8.0.8.y79z7p15wa.js",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -280,7 +280,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.7\\runtimes\\browser-wasm\\native\\dotnet.runtime.js"
+      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.8\\runtimes\\browser-wasm\\native\\dotnet.runtime.js"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.js.map",
@@ -299,7 +299,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.7\\runtimes\\browser-wasm\\native\\dotnet.runtime.js.map"
+      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.8\\runtimes\\browser-wasm\\native\\dotnet.runtime.js.map"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat",
@@ -318,7 +318,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.7\\runtimes\\browser-wasm\\native\\icudt_CJK.dat"
+      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.8\\runtimes\\browser-wasm\\native\\icudt_CJK.dat"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_EFIGS.dat",
@@ -337,7 +337,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.7\\runtimes\\browser-wasm\\native\\icudt_EFIGS.dat"
+      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.8\\runtimes\\browser-wasm\\native\\icudt_EFIGS.dat"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_no_CJK.dat",
@@ -356,7 +356,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.7\\runtimes\\browser-wasm\\native\\icudt_no_CJK.dat"
+      "OriginalItemSpec": "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.8\\runtimes\\browser-wasm\\native\\icudt_no_CJK.dat"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Markdig.wasm",
@@ -4254,6 +4254,25 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\webcil\\WindowsBase.wasm"
     },
     {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\00szfs8fi6.gz",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_no_CJK.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_no_CJK.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_no_CJK.dat"
+    },
+    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\07fulyfpqf.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -4748,6 +4767,25 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.SignalR.Client.Core.wasm"
     },
     {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\6rdy1sofye.gz",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_CJK.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat"
+    },
+    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\6ruwk0p530.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -4898,6 +4936,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.DependencyInjection.Abstractions.wasm"
+    },
+    {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\8k20j4h5xi.gz",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.native.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.wasm"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\9d4n6uixh5.gz",
@@ -5164,25 +5221,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Resources.Reader.wasm"
-    },
-    {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\bs5rishf7i.gz",
-      "SourceId": "ChatOnBlazor.Client",
-      "SourceType": "Project",
-      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.js.map.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js.map",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js.map"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\bsr62obdrm.gz",
@@ -5584,6 +5622,25 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Xml.XDocument.wasm"
     },
     {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\fzs1rkv01y.gz",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js"
+    },
+    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\g29c194jrk.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -5734,25 +5791,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Diagnostics.TextWriterTraceListener.wasm"
-    },
-    {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\h4ypv8fn0s.gz",
-      "SourceId": "ChatOnBlazor.Client",
-      "SourceType": "Project",
-      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.runtime.8.0.7.h4ypv8fn0s.js.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.7.h4ypv8fn0s.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.7.h4ypv8fn0s.js"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\h4zvx99hmr.gz",
@@ -6268,25 +6306,6 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Features.wasm"
     },
     {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\l961cmmwpv.gz",
-      "SourceId": "ChatOnBlazor.Client",
-      "SourceType": "Project",
-      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_CJK.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat"
-    },
-    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\lb25a189qv.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -6361,6 +6380,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.IO.Pipes.AccessControl.wasm"
+    },
+    {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\lmnu1z0r2z.gz",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.js.map.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js.map",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js.map"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\lou3zeuobi.gz",
@@ -6705,6 +6743,25 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Threading.Tasks.Dataflow.wasm"
     },
     {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\o96xhu2nkx.gz",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.native.8.0.8.o96xhu2nkx.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.8.o96xhu2nkx.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.8.o96xhu2nkx.js"
+    },
+    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\ovabkovyi5.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -6857,25 +6914,6 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.FileProviders.Physical.wasm"
     },
     {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\p8ardfcsbo.gz",
-      "SourceId": "ChatOnBlazor.Client",
-      "SourceType": "Project",
-      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.wasm.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.wasm",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.wasm"
-    },
-    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\p8maigduqv.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -6952,25 +6990,6 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Numerics.wasm"
     },
     {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\plrhyhtliz.gz",
-      "SourceId": "ChatOnBlazor.Client",
-      "SourceType": "Project",
-      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.8.0.7.plrhyhtliz.js.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.7.plrhyhtliz.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.7.plrhyhtliz.js"
-    },
-    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\py4ohdher1.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -6988,25 +7007,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Globalization.wasm"
-    },
-    {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\pzib6finwl.gz",
-      "SourceId": "ChatOnBlazor.Client",
-      "SourceType": "Project",
-      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.runtime.js.map.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.js.map",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.js.map"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\q2ax0i955l.gz",
@@ -7140,6 +7140,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Net.Sockets.wasm"
+    },
+    {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\qs78904c60.gz",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_EFIGS.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_EFIGS.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_EFIGS.dat"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\qxz1710hyk.gz",
@@ -7598,25 +7617,6 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Diagnostics.Contracts.wasm"
     },
     {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\tgrn9wklyk.gz",
-      "SourceId": "ChatOnBlazor.Client",
-      "SourceType": "Project",
-      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_EFIGS.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_EFIGS.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_EFIGS.dat"
-    },
-    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\tiz5ucpdbz.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -7902,6 +7902,25 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Linq.Parallel.wasm"
     },
     {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\vynaowk4y8.gz",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.runtime.js.map.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.js.map",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.js.map"
+    },
+    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\w2fk02443m.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -8130,44 +8149,6 @@
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.VisualBasic.Core.wasm"
     },
     {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\x9pe2e38na.gz",
-      "SourceId": "ChatOnBlazor.Client",
-      "SourceType": "Project",
-      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_no_CJK.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_no_CJK.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_no_CJK.dat"
-    },
-    {
-      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\xc7d462ice.gz",
-      "SourceId": "ChatOnBlazor.Client",
-      "SourceType": "Project",
-      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.js.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js"
-    },
-    {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\xkp9k1af1i.gz",
       "SourceId": "ChatOnBlazor.Client",
       "SourceType": "Project",
@@ -8242,6 +8223,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.DependencyInjection.wasm"
+    },
+    {
+      "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\y79z7p15wa.gz",
+      "SourceId": "ChatOnBlazor.Client",
+      "SourceType": "Project",
+      "ContentRoot": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.runtime.8.0.8.y79z7p15wa.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.8.y79z7p15wa.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.8.y79z7p15wa.js"
     },
     {
       "Identity": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\obj\\Debug\\net8.0\\compressed\\yqlq8ekuow.gz",

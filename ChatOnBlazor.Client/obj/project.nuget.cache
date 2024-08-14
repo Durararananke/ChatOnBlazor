@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FLYQXHMTIc0=",
+  "dgSpecHash": "g5rOQvy4qtY=",
   "success": true,
   "projectFilePath": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj",
   "expectedPackageFiles": [
@@ -40,14 +40,14 @@
     "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.jsinterop\\8.0.8\\microsoft.jsinterop.8.0.8.nupkg.sha512",
     "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.jsinterop.webassembly\\8.0.8\\microsoft.jsinterop.webassembly.8.0.8.nupkg.sha512",
-    "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.7\\microsoft.net.illink.tasks.8.0.7.nupkg.sha512",
-    "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.7\\microsoft.net.sdk.webassembly.pack.8.0.7.nupkg.sha512",
+    "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.8\\microsoft.net.illink.tasks.8.0.8.nupkg.sha512",
+    "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.8\\microsoft.net.sdk.webassembly.pack.8.0.8.nupkg.sha512",
     "C:\\Users\\Danger!\\.nuget\\packages\\mudblazor\\7.6.0\\mudblazor.7.6.0.nupkg.sha512",
     "C:\\Users\\Danger!\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
     "C:\\Users\\Danger!\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\Danger!\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
     "C:\\Users\\Danger!\\.nuget\\packages\\system.threading.channels\\8.0.0\\system.threading.channels.8.0.0.nupkg.sha512",
-    "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.7\\microsoft.netcore.app.runtime.mono.browser-wasm.8.0.7.nupkg.sha512"
+    "C:\\Users\\Danger!\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.8\\microsoft.netcore.app.runtime.mono.browser-wasm.8.0.8.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,9 +1,10 @@
 ﻿@page "/counter"
 @using System.IO
+@using Microsoft.AspNetCore.Authorization
 @using Markdig
 @inject IJSRuntime JSRuntime
 
-
+@attribute [Authorize]
 @* <PageTitle>Counter</PageTitle>
 
 <MudText Typo="Typo.h3" GutterBottom="true">Counter</MudText>
@@ -12,120 +13,146 @@
 
 <MudButton Color="Color.Primary" Variant="Variant.Filled" @onclick="IncrementCount">Click me</MudButton> *@
 
-<MudLayout Style="height: 100vh;">
-    <MudMainContent>
-        <MudGrid Style="height: 100%;">
-            <MudItem xs="3" Style="height: 100%;">
-                <MudPaper Class="pa-4" Elevation="2" Style="height: 100%; overflow-y: auto;">
-                    <MudText Typo="Typo.h6">Folders</MudText>
-                    <MudList Dense="true" T="string">
-                        @foreach (var folder in Folders.Keys)
+<MudGrid Style="height: 100%;">
+    @* File Manger *@
+    <MudItem xs="4" Style="height: 100%;">
+        <MudPaper Class="pa-4" Elevation="0" Style="@($"background-color: {paperBackgroundColor}; height: 100%; overflow-y: auto; d-flex")">
+            <MudText Typo="Typo.h6">File manager</MudText>
+            <MudTreeView T="string" ExpandOnClick="true" SelectedValueChanged="OnSelectedValueChanged" Dense="true">
+                @foreach (var folder in Folders)
+                {
+                    <MudTreeViewItem Value="@folder.Key" Text="@folder.Key" Icon="@Icons.Material.Filled.Folder" IconColor="Color.Secondary">
+                        @foreach (var note in folder.Value)
                         {
-                            <MudListItem OnClick="@(() => FolderSelected(folder))" 
-                                         Style="@(folder == SelectedFolder ? "background-color: var(--mud-palette-primary-hover);" : "")">
-                                <MudIcon Icon="@Icons.Material.Filled.Folder" Class="mr-2" />
-                                @folder
-                            </MudListItem>
+                            <MudTreeViewItem Value="@($"{folder.Key}|{note.Key}")" Text="@note.Key" Icon="@Icons.Material.Filled.Note" IconColor="Color.Secondary"/>
                         }
-                    </MudList>
-                    <MudTextField @bind-Value="NewFolderName" Label="New Folder" />
-                    <MudButton OnClick="CreateFolder" Variant="Variant.Filled" Color="Color.Primary">Create Folder</MudButton>
-                    <MudButton OnClick="DeleteFolder" Variant="Variant.Filled" Color="Color.Error">Delete Folder</MudButton>
-                </MudPaper>
-            </MudItem>
-            
-            <MudItem xs="3" Style="height: 100%;">
-                <MudPaper Class="pa-4" Elevation="2" Style="height: 100%; overflow-y: auto;">
-                    <MudText Typo="Typo.h6">Notes in @SelectedFolder</MudText>
-                    <MudList Dense="true" T="string">
-                        @if (!string.IsNullOrEmpty(SelectedFolder) && Folders.ContainsKey(SelectedFolder))
-                        {
-                            @foreach (var note in Folders[SelectedFolder])
-                            {
-                                <MudListItem OnClick="@(() => NoteSelected(note.Key))"
-                                             Style="@(note.Key == SelectedNote ? "background-color: var(--mud-palette-primary-hover);" : "")">
-                                    <MudIcon Icon="@Icons.Material.Filled.Note" Class="mr-2" />
-                                    @note.Key
-                                </MudListItem>
-                            }
-                        }
-                    </MudList>
-                    <MudTextField @bind-Value="NewNoteName" Label="New Note" />
-                    <MudButton OnClick="CreateNote" Variant="Variant.Filled" Color="Color.Primary">Create Note</MudButton>
-                    <MudButton OnClick="DeleteNote" Variant="Variant.Filled" Color="Color.Error">Delete Note</MudButton>
-                </MudPaper>
-            </MudItem>
-            
-            <MudItem xs="6" Style="height: 100%;">
-                <MudPaper Class="pa-4" Elevation="2" Style="height: 100%; display: flex; flex-direction: column;">
-                    <MudText Typo="Typo.h6">Note Content</MudText>
-                    <MudToggleIconButton
-                        @bind-Toggled="@IsPreviewMode"
-                        Icon="@Icons.Material.Filled.Edit"
-                        ToggledIcon="@Icons.Material.Filled.Visibility"
-                        Color="Color.Primary"
-                        Title="Toggle Preview" />
-                    @if (IsPreviewMode)
-                    {
-                        <div class="mud-typography-body1 mt-4" style="flex-grow: 1; overflow-y: auto;">
-                            @((MarkupString)Markdown.ToHtml(NoteContent))
-                        </div>
-                    }
-                    else
-                    {
-                        <MudTextField @bind-Value="NoteContent" Label="Edit Note" Lines="20" Style="flex-grow: 1;" />
-                    }
-                    <MudButton OnClick="SaveNote" Variant="Variant.Filled" Color="Color.Primary" Class="mt-4">Save Note</MudButton>
-                </MudPaper>
-            </MudItem>
-        </MudGrid>
-    </MudMainContent>
-</MudLayout>
+                    </MudTreeViewItem>
+                }
+            </MudTreeView>
+            <MudDivider Class="my-4" />
+            <MudTextField @bind-Value="NewFolderName" Label="New Folder" Class="mt-4" />
+            <MudButton OnClick="CreateFolder" Variant="Variant.Filled" Color="Color.Success" Class="mt-4">Create Folder</MudButton>
+            <MudTextField @bind-Value="NewNoteName" Label="New Note" Class="mt-4" />
+            <MudStack Row="true">
+                <MudButton OnClick="CreateNote" Variant="Variant.Filled" Color="Color.Success" Class="mt-4">Create Note</MudButton>
+                <MudButton OnClick="DeleteSelected" Variant="Variant.Filled" Color="Color.Error" Class="mt-4">Delete Selected</MudButton>
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+
+    @* MarkdownFile *@
+    <MudItem xs="8">
+        <MudPaper Class="pa-4" Elevation="4" Style="height: 100%; d-flex; flex-direction: column; border-radius: 16px;">
+            @if (!string.IsNullOrEmpty(OpenNoteName))
+            {
+                <MudText Typo="Typo.h6" Align="Align.Center">@OpenNoteName</MudText>
+                    <MudToggleIconButton @bind-Toggled="@IsPreviewMode" Icon="@Icons.Material.Filled.Edit" ToggledIcon="@Icons.Material.Filled.Visibility" Color="Color.Primary"/>
+
+                @* PreviewMode *@
+                @if (IsPreviewMode)
+                {
+                    <div class="mud-typography-body1 mt-4 markdown-body" style="flex-grow: 1; overflow-y: auto;">
+                        @((MarkupString)Markdown.ToHtml(NoteContent))
+                    </div>
+                }
+                else
+                {
+                    <MudTextField @bind-Value="NoteContent" Label="Edit Note" Lines="20" Style="flex-grow: 1;" />
+                }
+                <MudStack Row="true" Class="mb-4">
+                    <MudButton OnClick="SaveNote" Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Save" Class="mt-4">Save Note</MudButton>
+                    <MudButton OnClick="DownloadNote" Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Download" Class="mt-4">Download Note</MudButton>
+                </MudStack>
+            }
+            else
+            {
+                <MudText Typo="Typo.h6">Select Your Note</MudText>
+            }
+        </MudPaper>
+    </MudItem>
+
+</MudGrid>
+
+<style>
+    .markdown-body {
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+        font-size: 16px;
+        line-height: 1.5;
+        word-wrap: break-word;
+    }
+
+        .markdown-body blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 0 0 16px 0;
+        }
+
+        .markdown-body ul {
+            padding-left: 2em;
+            margin-bottom: 16px;
+        }
+
+        .markdown-body li {
+            list-style-type: disc;
+        }
+
+            .markdown-body li + li {
+                margin-top: 0.25em;
+            }
+</style>
+
 
 @code {
+    [CascadingParameter(Name = "paper")]
+    string paperBackgroundColor { get; set; }
     private Dictionary<string, Dictionary<string, string>> Folders = new Dictionary<string, Dictionary<string, string>>();
-    private string SelectedFolder = "";
-    private string SelectedNote = "";
-    private string NewFolderName = "";
-    private string NewNoteName = "";
-    private string NoteContent = "";
+    private string? SelectedValue;
+    private string? NewFolderName;
+    private string? NewNoteName;
+    private string? NoteContent;
     private bool IsPreviewMode = false;
+    private string? OpenNoteName;
 
     protected override void OnInitialized()
     {
-        // Initialize with some dummy data
+        // Examples
         Folders = new Dictionary<string, Dictionary<string, string>>
         {
-            {"Personal", new Dictionary<string, string> {
-                {"Note 1", "This is the content of Note 1 in Personal folder"},
-                {"Note 2", "This is the content of Note 2 in Personal folder"}
-            }},
             {"Work", new Dictionary<string, string> {
-                {"Meeting Minutes", "This is the content of Meeting Minutes in Work folder"},
-                {"Project Plan", "This is the content of Project Plan in Work folder"}
+                {"Note 1", "***Note 1***"},
+                {"Note 2", "> Yo soy ardiente, yo soy morena, yo soy el simbolo de la pasion"}
             }},
             {"Projects", new Dictionary<string, string>()}
         };
     }
 
-    private void FolderSelected(string folder)
+    private void OnSelectedValueChanged(string newValue)
     {
-        SelectedFolder = folder;
-        SelectedNote = "";
-        NoteContent = "";
-        StateHasChanged();
+        SelectedValue = newValue;
+        LoadSelectedNote();
     }
 
-    private void NoteSelected(string note)
+    private void LoadSelectedNote()
     {
-        SelectedNote = note;
-        if (!string.IsNullOrEmpty(SelectedFolder) && Folders.ContainsKey(SelectedFolder) && Folders[SelectedFolder].ContainsKey(note))
+        if (!string.IsNullOrEmpty(SelectedValue))
         {
-            NoteContent = Folders[SelectedFolder][note];
+            var parts = SelectedValue.Split('|');
+            if (parts.Length == 2 && Folders.ContainsKey(parts[0]) && Folders[parts[0]].ContainsKey(parts[1]))
+            {
+                NoteContent = Folders[parts[0]][parts[1]];
+                OpenNoteName = parts[1];
+            }
+            else
+            {
+                NoteContent = "";
+                OpenNoteName = "";
+            }
         }
         else
         {
             NoteContent = "";
+            OpenNoteName = "";
         }
         StateHasChanged();
     }
@@ -140,50 +167,65 @@
         }
     }
 
-    private void DeleteFolder()
-    {
-        if (!string.IsNullOrWhiteSpace(SelectedFolder))
-        {
-            Folders.Remove(SelectedFolder);
-            SelectedFolder = "";
-            SelectedNote = "";
-            NoteContent = "";
-            StateHasChanged();
-        }
-    }
-
     private void CreateNote()
     {
-        if (!string.IsNullOrWhiteSpace(NewNoteName) && !string.IsNullOrWhiteSpace(SelectedFolder) && Folders.ContainsKey(SelectedFolder))
+        if (!string.IsNullOrWhiteSpace(NewNoteName) && !string.IsNullOrEmpty(SelectedValue))
         {
-            if (!Folders[SelectedFolder].ContainsKey(NewNoteName))
+            var parts = SelectedValue.Split('|');
+            if (parts.Length == 1 && Folders.ContainsKey(parts[0]))
             {
-                Folders[SelectedFolder][NewNoteName] = "";
-                NewNoteName = "";
-                StateHasChanged();
+                if (!Folders[parts[0]].ContainsKey(NewNoteName))
+                {
+                    Folders[parts[0]][NewNoteName] = "";
+                    NewNoteName = "";
+                    StateHasChanged();
+                }
             }
         }
     }
 
-    private void DeleteNote()
+    private void DeleteSelected()
     {
-        if (!string.IsNullOrWhiteSpace(SelectedNote) && !string.IsNullOrWhiteSpace(SelectedFolder) && Folders.ContainsKey(SelectedFolder))
+        if (!string.IsNullOrEmpty(SelectedValue))
         {
-            Folders[SelectedFolder].Remove(SelectedNote);
-            SelectedNote = "";
+            var parts = SelectedValue.Split('|');
+            if (parts.Length == 1 && Folders.ContainsKey(parts[0]))
+            {
+                Folders.Remove(parts[0]);
+            }
+            else if (parts.Length == 2 && Folders.ContainsKey(parts[0]) && Folders[parts[0]].ContainsKey(parts[1]))
+            {
+                Folders[parts[0]].Remove(parts[1]);
+            }
+            SelectedValue = "";
             NoteContent = "";
+            OpenNoteName = "";
             StateHasChanged();
         }
     }
 
     private void SaveNote()
     {
-        if (!string.IsNullOrWhiteSpace(SelectedNote) && !string.IsNullOrWhiteSpace(SelectedFolder) && Folders.ContainsKey(SelectedFolder))
+        if (!string.IsNullOrEmpty(SelectedValue))
         {
-            Folders[SelectedFolder][SelectedNote] = NoteContent;
-            Console.WriteLine($"Saving note: {SelectedNote} in folder: {SelectedFolder}");
-            Console.WriteLine($"Content: {NoteContent}");
-            StateHasChanged();
+            var parts = SelectedValue.Split('|');
+            if (parts.Length == 2 && Folders.ContainsKey(parts[0]))
+            {
+                Folders[parts[0]][parts[1]] = NoteContent;
+                Console.WriteLine($"Saving note: {parts[1]} in folder: {parts[0]}");
+                Console.WriteLine($"Content: {NoteContent}");
+            }
+        }
+    }
+
+    private async Task DownloadNote()
+    {
+        if (!string.IsNullOrEmpty(OpenNoteName) && !string.IsNullOrEmpty(NoteContent))
+        {
+            var fileName = $"{OpenNoteName}.md";
+            var fileContent = NoteContent;
+            var fileBytes = System.Text.Encoding.UTF8.GetBytes(fileContent);
+            await JSRuntime.InvokeVoidAsync("downloadFile", fileName, Convert.ToBase64String(fileBytes));
         }
     }
 }
