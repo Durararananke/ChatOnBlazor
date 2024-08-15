@@ -15,12 +15,12 @@ public class ChatHub:Hub
         if(groupPwds.TryAdd(groupName,groupPwd))
         {
             groupMembers[groupName]=new List<string>();
-            await Clients.Caller.SendAsync("SysteMessage", "Ghoti", $"Group {groupName} was successfully created.", DateTime.Now);
+            await Clients.Caller.SendAsync("SysteMessage", "Ghoti", $"Thread {groupName} was successfully created.", DateTime.Now);
             await Clients.All.SendAsync("UpdateGroupList", groupPwds.Keys.ToList());
         }
         else
         {
-            await Clients.Caller.SendAsync("SysteMessage", "Ghoti", $"Group {groupName} already exists.", DateTime.Now);
+            await Clients.Caller.SendAsync("SysteMessage", "Ghoti", $"Thread {groupName} already exists.", DateTime.Now);
         }
     }
 

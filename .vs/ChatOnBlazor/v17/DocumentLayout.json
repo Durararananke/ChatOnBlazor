@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "F:\\Csharp\\ChatOnBlazor\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|f:\\csharp\\chatonblazor\\chatonblazor.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|solutionrelative:chatonblazor.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|f:\\csharp\\chatonblazor\\chatonblazor.client\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|solutionrelative:chatonblazor.client\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C2167DA-28EF-422B-BA65-4403B0DD238F}|ChatOnBlazor\\ChatOnBlazor.csproj|f:\\csharp\\chatonblazor\\chatonblazor\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C2167DA-28EF-422B-BA65-4403B0DD238F}|ChatOnBlazor\\ChatOnBlazor.csproj|solutionrelative:chatonblazor\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C2167DA-28EF-422B-BA65-4403B0DD238F}|ChatOnBlazor\\ChatOnBlazor.csproj|f:\\csharp\\chatonblazor\\chatonblazor\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C2167DA-28EF-422B-BA65-4403B0DD238F}|ChatOnBlazor\\ChatOnBlazor.csproj|solutionrelative:chatonblazor\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|f:\\csharp\\chatonblazor\\chatonblazor.client\\pages\\chatchannels.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|solutionrelative:chatonblazor.client\\pages\\chatchannels.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|f:\\csharp\\chatonblazor\\chatonblazor.client\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|solutionrelative:chatonblazor.client\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|f:\\csharp\\chatonblazor\\chatonblazor.client\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|solutionrelative:chatonblazor.client\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|f:\\csharp\\chatonblazor\\chatonblazor.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E0C55657-7C0A-4F06-8839-C86FE5FD8112}|ChatOnBlazor.Client\\ChatOnBlazor.Client.csproj|solutionrelative:chatonblazor.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,12 +37,38 @@
           "SelectedChildIndex": 3,
           "Children": [
             {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "ChatOnBlazor\\Hubs\\ChatHub.cs",
+              "ToolTip": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "ChatOnBlazor\\Hubs\\ChatHub.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-15T13:06:29.776Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "App.razor",
+              "DocumentMoniker": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor\\Components\\App.razor",
+              "RelativeDocumentMoniker": "ChatOnBlazor\\Components\\App.razor",
+              "ToolTip": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor\\Components\\App.razor",
+              "RelativeToolTip": "ChatOnBlazor\\Components\\App.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-15T07:51:30.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Home.razor",
               "DocumentMoniker": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "ChatOnBlazor.Client\\Pages\\Home.razor",
@@ -47,29 +81,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ChatChannels.razor",
               "DocumentMoniker": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Pages\\ChatChannels.razor",
               "RelativeDocumentMoniker": "ChatOnBlazor.Client\\Pages\\ChatChannels.razor",
               "ToolTip": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Pages\\ChatChannels.razor",
               "RelativeToolTip": "ChatOnBlazor.Client\\Pages\\ChatChannels.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAH8BAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-08-14T05:15:19.09Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Counter.razor",
               "DocumentMoniker": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Pages\\Counter.razor",
               "RelativeDocumentMoniker": "ChatOnBlazor.Client\\Pages\\Counter.razor",
               "ToolTip": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Pages\\Counter.razor",
               "RelativeToolTip": "ChatOnBlazor.Client\\Pages\\Counter.razor",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAEcAAAAOAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAALEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-12T13:56:23.603Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-12T13:56:23.603Z"
             }
           ]
         },
@@ -79,13 +112,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "NavMenu.razor",
               "DocumentMoniker": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Layout\\NavMenu.razor",
               "RelativeDocumentMoniker": "ChatOnBlazor.Client\\Layout\\NavMenu.razor",
               "ToolTip": "F:\\Csharp\\ChatOnBlazor\\ChatOnBlazor.Client\\Layout\\NavMenu.razor",
               "RelativeToolTip": "ChatOnBlazor.Client\\Layout\\NavMenu.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAxwAcAAAB4AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAxwAgAAAB0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-08-13T14:58:17.002Z",
               "EditorCaption": ""
