@@ -39,6 +39,4 @@ Identity accounts are stored in SQL Server. Chat rooms and membership are held i
 ## Security behavior
 
 - The SignalR hub requires an authenticated Identity cookie.
-- A connection must join a room with its password before it can send messages there.
 - Room passwords are stored as password hashes in memory.
-- Markdown output is sanitized before it is rendered as HTML.
