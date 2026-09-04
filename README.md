@@ -15,10 +15,6 @@ dotnet build ChatOnBlazor.sln
 dotnet test ChatOnBlazor.sln
 ```
 
-## Prepare the identity database
-
-Install the EF Core command-line tool if needed, then apply the included migration:
-
 ```powershell
 dotnet tool install --global dotnet-ef --version 8.0.30
 dotnet ef database update --project ChatOnBlazor/ChatOnBlazor.csproj
