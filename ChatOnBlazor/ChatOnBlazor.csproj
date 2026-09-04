@@ -10,12 +10,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ChatOnBlazor.Client\ChatOnBlazor.Client.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.*" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.*" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.*" />
-    <PackageReference Include="Extensions.MudBlazor.StaticInput" Version="2.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.30" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.30" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.30" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.30" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.30">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Extensions.MudBlazor.StaticInput" Version="2.1.1" />
+    <PackageReference Include="MudBlazor" Version="7.16.0" />
   </ItemGroup>
 
 </Project>

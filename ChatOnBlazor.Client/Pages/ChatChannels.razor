@@ -1,7 +1,8 @@
 ﻿@page "/chat"
 
 @using Microsoft.AspNetCore.Authorization
-@using Markdig
+@using ChatOnBlazor.Client.Security
+@implements IAsyncDisposable
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject ISnackbar Snackbar
@@ -70,7 +71,7 @@
                                         @foreach(var g in joinedGroups)
                                         {
 
-                                            <MudListItem Icon="@Icons.Material.Filled.Groups" @onclick="()=>{ChangeGroup(g);Snackbar.Add(click, Severity.Info);}">
+                                            <MudListItem Icon="@Icons.Material.Filled.Groups" @onclick="() => ChangeGroup(g)">
                                                     <div class="d-flex">
                                                     <MudText Class="mt-1">@g</MudText>
                                                     <MudBadge Content="messagesInGroup[g].Count" Color="Color.Primary" Overlap="true" Class="d-flex ml-auto">
@@ -151,7 +152,7 @@
                                                 </MudText> *@
 
                                                     <div class="mud-typography-body1 mt-2 markdown-body" style="flex-grow: 1; overflow-y: auto;">
-                                                        @((MarkupString)Markdown.ToHtml(@msg.message))
+                                                        @((MarkupString)SafeMarkdown.ToHtml(msg.message))
                                                     </div>
 
                                             </MudStack>
@@ -179,14 +180,7 @@
 
 
                         <MudStack Justify="Justify.Center" Spacing="3">
-                            <MudFab Variant="Variant.Filled" @onclick="()=>SendMessageGroup()" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary" Size="Size.Medium">Send</MudFab>
-                            @* <MudFab Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Image" Color="Color.Secondary" Size="Size.Medium">Send</MudFab> *@
-                            <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
-                                <ActivatorContent>
-                                    <MudFab Color="Color.Success"
-                                            StartIcon="@Icons.Material.Filled.AttachFile" Size="Size.Medium" />
-                                </ActivatorContent>
-                            </MudFileUpload>
+                            <MudButton Variant="Variant.Filled" OnClick="SendMessageGroup" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary" Size="Size.Medium">Send</MudButton>
                         </MudStack>
                     </MudStack>
                  </MudStack>   
@@ -488,14 +482,12 @@
         }
     }
 
-    @@media (prefers-color-scheme)
 </style>
 
 
 @code {
     private HubConnection? hubConnection;
-    private bool isConnected = false;
-    private string? userName;
+    private string userName = "Unknown user";
     private string? message;
     private string? groupName;
     private string? groupPwd;
@@ -504,109 +496,136 @@
     private string? selectedGroup;
     private List<string> existedGroups = new List<string>();
     private List<string> joinedGroups = new List<string>();
-    private List<string> systeMessages = new List<string>();
     private Dictionary<string, List<string>> groupMembers = new Dictionary<string, List<string>>();
-    private Dictionary<string, List<(string userName, string message, TimeOnly timeStamp)>> messagesInGroup 
-        = new Dictionary<string, List<(string userName, string message, TimeOnly timeStamp)>>();
+    private Dictionary<string, List<(string userName, string message, DateTimeOffset timeStamp)>> messagesInGroup
+        = new Dictionary<string, List<(string userName, string message, DateTimeOffset timeStamp)>>();
 
     private List<string> display_GroupMembers = new List<string>();
-    private List<(string userName, string message, TimeOnly timeStamp)> display_messagesInGroup = new List<(string userName, string message, TimeOnly timeStamp)>();
+    private List<(string userName, string message, DateTimeOffset timeStamp)> display_messagesInGroup = new();
 
     protected override async Task OnInitializedAsync()
     {
         await GetUserName();
 
-        hubConnection=new HubConnectionBuilder()
+        hubConnection = new HubConnectionBuilder()
             .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+            .WithAutomaticReconnect()
             .Build();
 
-        hubConnection.On<string, string, string, TimeOnly>("ReceiveMessage", (groupName, userName, message, timeStamp) =>
-        {
-            if(!messagesInGroup.ContainsKey(groupName))
-            {
-                messagesInGroup[groupName] = new List<(string, string, TimeOnly)>();
-            }
-            messagesInGroup[groupName].Add((userName, message, timeStamp));
-
-            if (groupName == selectedGroup)
-            {
-                display_messagesInGroup = messagesInGroup[groupName];
-            }
-
-            InvokeAsync(StateHasChanged);
-        });
-
-        hubConnection.On<string, string, DateTime>("SysteMessage", (userName, message, timeStamp) =>
-        {
-            // systeMessages.Add($"[{timeStamp}] {userName}: {message}");
-            // InvokeAsync(StateHasChanged);
-
-            var formattedMessage = $"[{timeStamp}] {userName}: {message}";
+        hubConnection.On<string, string, string, DateTimeOffset>("ReceiveMessage", (receivedGroup, sender, receivedMessage, timeStamp) =>
             InvokeAsync(() =>
             {
+                if (!messagesInGroup.TryGetValue(receivedGroup, out var groupMessages))
+                {
+                    groupMessages = new List<(string, string, DateTimeOffset)>();
+                    messagesInGroup[receivedGroup] = groupMessages;
+                }
+
+                groupMessages.Add((sender, receivedMessage, timeStamp));
+                if (receivedGroup == selectedGroup)
+                {
+                    display_messagesInGroup = groupMessages;
+                }
+
+                StateHasChanged();
+            }));
+
+        hubConnection.On<string, string, DateTimeOffset>("SystemMessage", (sender, systemMessage, timeStamp) =>
+            InvokeAsync(() =>
+            {
+                var formattedMessage = $"[{timeStamp.ToLocalTime():T}] {sender}: {systemMessage}";
                 Snackbar.Add(formattedMessage, Severity.Info);
-            });
-        });
+            }));
 
         hubConnection.On<List<string>>("UpdateGroupList", groupList =>
-        {
-            existedGroups = groupList;
-            InvokeAsync(StateHasChanged);
-        });
-
-        hubConnection.On<string, List<string>>("UpdateGroupMember", (groupName, members) =>
-        {
-            if(!groupMembers.ContainsKey(groupName))
+            InvokeAsync(() =>
             {
-                groupMembers[groupName] = new List<string>();
-            }
-            groupMembers[groupName] = members;
+                existedGroups = groupList;
+                StateHasChanged();
+            }));
 
-            if(groupName==selectedGroup)
+        hubConnection.On<string, List<string>>("UpdateGroupMember", (updatedGroup, members) =>
+            InvokeAsync(() =>
             {
-                display_GroupMembers = groupMembers[groupName];
-            }
+                groupMembers[updatedGroup] = members;
 
-            InvokeAsync(StateHasChanged);
-        });
-
-        hubConnection.On<bool, string>("JoinResult", (success, groupName) =>
-        {
-            if(success&&!joinedGroups.Contains(groupName))
-            {
-                ChangeGroup(groupName);
-                joinedGroups.Add(selectedGroup);
-                if(!messagesInGroup.ContainsKey(groupName))
+                if (updatedGroup == selectedGroup)
                 {
-                    messagesInGroup[groupName] = new List<(string, string, TimeOnly)>();
+                    display_GroupMembers = members;
                 }
-            }
-            InvokeAsync(StateHasChanged);
-        });
 
-        hubConnection.On<string>("LeaveResult", groupName =>
+                StateHasChanged();
+            }));
+
+        hubConnection.On<bool, string>("JoinResult", (success, joinedGroup) =>
+            InvokeAsync(() =>
+            {
+                if (success)
+                {
+                    if (!joinedGroups.Contains(joinedGroup, StringComparer.OrdinalIgnoreCase))
+                    {
+                        joinedGroups.Add(joinedGroup);
+                    }
+
+                    messagesInGroup.TryAdd(joinedGroup, new List<(string, string, DateTimeOffset)>());
+                    groupMembers.TryAdd(joinedGroup, new List<string>());
+                    ChangeGroup(joinedGroup);
+                }
+
+                StateHasChanged();
+            }));
+
+        hubConnection.On<string>("LeaveResult", leftGroup =>
+            InvokeAsync(() =>
+            {
+                joinedGroups.RemoveAll(group => string.Equals(group, leftGroup, StringComparison.OrdinalIgnoreCase));
+                messagesInGroup.Remove(leftGroup);
+                groupMembers.Remove(leftGroup);
+                if (string.Equals(selectedGroup, leftGroup, StringComparison.OrdinalIgnoreCase))
+                {
+                    selectedGroup = null;
+                    display_GroupMembers = new List<string>();
+                    display_messagesInGroup = new List<(string, string, DateTimeOffset)>();
+                }
+
+                StateHasChanged();
+            }));
+
+        hubConnection.Reconnecting += _ => InvokeAsync(() =>
+            Snackbar.Add("Connection lost. Reconnecting…", Severity.Warning));
+
+        hubConnection.Reconnected += _ => InvokeAsync(() =>
         {
-            joinedGroups.Remove(groupName);
-            messagesInGroup.Remove(groupName);
-            selectedGroup = string.Empty;
-            display_GroupMembers.Clear();
-            display_messagesInGroup.Clear();
-            InvokeAsync(StateHasChanged);
+            ClearJoinedState();
+            Snackbar.Add("Reconnected. Please join your threads again.", Severity.Info);
+            StateHasChanged();
         });
 
+        hubConnection.Closed += _ => InvokeAsync(() =>
+            Snackbar.Add("Chat connection closed.", Severity.Error));
 
-        await hubConnection.StartAsync();
-        isConnected = true;
+        try
+        {
+            await hubConnection.StartAsync();
+        }
+        catch (Exception exception)
+        {
+            Snackbar.Add($"Unable to connect to chat: {exception.Message}", Severity.Error);
+        }
     }
 
     #region Group
 
     private async Task CreateGroup()
     {
-        if(!string.IsNullOrEmpty(newGroupName)&&!string.IsNullOrEmpty(newGroupPwd))
+        if (string.IsNullOrWhiteSpace(newGroupName) || string.IsNullOrEmpty(newGroupPwd))
         {
-            await hubConnection.SendAsync("CreateGroup", newGroupName, newGroupPwd);
-            existedGroups.Add(newGroupName);
+            Snackbar.Add("Enter a thread name and password.", Severity.Warning);
+            return;
+        }
+
+        if (await InvokeHubAsync("CreateGroup", newGroupName, newGroupPwd))
+        {
             newGroupName = string.Empty;
             newGroupPwd = string.Empty;
         }
@@ -614,14 +633,27 @@
 
     private async Task JoinGroup()
     {
-        await hubConnection.SendAsync("JoinGroup", groupName, groupPwd);
-        groupPwd = string.Empty;
+        if (string.IsNullOrWhiteSpace(groupName) || string.IsNullOrEmpty(groupPwd))
+        {
+            Snackbar.Add("Select a thread and enter its password.", Severity.Warning);
+            return;
+        }
+
+        if (await InvokeHubAsync("JoinGroup", groupName, groupPwd))
+        {
+            groupPwd = string.Empty;
+        }
     }
 
     private async Task LeaveGroup()
     {
-        await hubConnection.SendAsync("LeaveGroup", selectedGroup);
-        groupPwd = string.Empty;
+        if (string.IsNullOrEmpty(selectedGroup))
+        {
+            Snackbar.Add("Select a thread first.", Severity.Warning);
+            return;
+        }
+
+        await InvokeHubAsync("LeaveGroup", selectedGroup);
     }
 
     #endregion
@@ -630,8 +662,10 @@
     {
         if (!string.IsNullOrEmpty(message) && !string.IsNullOrEmpty(selectedGroup))
         {
-            await hubConnection.SendAsync("SendMessageGroup", selectedGroup, message);
-            message = string.Empty;
+            if (await InvokeHubAsync("SendMessageGroup", selectedGroup, message))
+            {
+                message = string.Empty;
+            }
         }
     }
 
@@ -647,18 +681,51 @@
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
-        userName = user.Identity?.Name;
+        userName = user.Identity?.Name ?? "Unknown user";
     }
 
-    private async Task ChangeGroup(string groupName)
+    private void ChangeGroup(string selectedGroupName)
     {
-        selectedGroup = groupName;
-        display_GroupMembers = groupMembers[selectedGroup];
-        display_messagesInGroup = messagesInGroup[selectedGroup];
+        selectedGroup = selectedGroupName;
+        display_GroupMembers = groupMembers.TryGetValue(selectedGroupName, out var members)
+            ? members
+            : new List<string>();
+        display_messagesInGroup = messagesInGroup.TryGetValue(selectedGroupName, out var messages)
+            ? messages
+            : new List<(string, string, DateTimeOffset)>();
     }
 
     public bool IsConnected =>
         hubConnection?.State == HubConnectionState.Connected;
+
+    private async Task<bool> InvokeHubAsync(string methodName, params object?[] arguments)
+    {
+        if (!IsConnected || hubConnection is null)
+        {
+            Snackbar.Add("Chat is not connected.", Severity.Error);
+            return false;
+        }
+
+        try
+        {
+            await hubConnection.SendCoreAsync(methodName, arguments);
+            return true;
+        }
+        catch (Exception exception)
+        {
+            Snackbar.Add(exception.Message, Severity.Error);
+            return false;
+        }
+    }
+
+    private void ClearJoinedState()
+    {
+        joinedGroups.Clear();
+        groupMembers.Clear();
+        selectedGroup = null;
+        display_GroupMembers = new List<string>();
+        display_messagesInGroup = new List<(string, string, DateTimeOffset)>();
+    }
 
     public async ValueTask DisposeAsync()
     {
@@ -672,9 +739,9 @@
 @* Color *@
 @code{
     [CascadingParameter(Name ="paper")] 
-    string paperBackgroundColor { get; set; }
+    string paperBackgroundColor { get; set; } = string.Empty;
     [CascadingParameter(Name ="listItem")]
-    string listItemBackgroundColor { get; set; }
+    string listItemBackgroundColor { get; set; } = string.Empty;
 
     bool isShow;
     InputType PasswordInput = InputType.Password;
@@ -757,9 +824,9 @@
 
     #region Autocomplete
 
-    private bool resetValueOnEmptyText;
-    private bool coerceText;
-    private bool coerceValue;
+    private bool resetValueOnEmptyText = false;
+    private bool coerceText = false;
+    private bool coerceValue = false;
 
     private async Task<IEnumerable<string>> Search1(string value, CancellationToken token)
     {
@@ -784,20 +851,4 @@
     }
 
     #endregion
-}
-
-@* Test *@
-@code{
-    public string click = "Click!";
-}
-
-@* UploadFile *@
-@code
-{
-    IList<IBrowserFile> _files = new List<IBrowserFile>();
-    private void UploadFiles(IBrowserFile file)
-    {
-        _files.Add(file);
-        //TODO upload the files to the server
-    }
 }

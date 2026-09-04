@@ -81,13 +81,13 @@ internal sealed class PersistingRevalidatingAuthenticationStateProvider : Revali
             throw new UnreachableException($"Authentication state not set in {nameof(OnPersistingAsync)}().");
         }
 
-        // »ñÈ¡Éí·İÑéÖ¤×´Ì¬
+        // è·å–èº«ä»½éªŒè¯çŠ¶æ€
         var authenticationState = await authenticationStateTask;
 
-        // »ñÈ¡µ±Ç°µÄ ClaimsPrincipal ¶ÔÏó£¬±íÊ¾Éí·İÑéÖ¤ĞÅÏ¢
+        // è·å–å½“å‰çš„ ClaimsPrincipal å¯¹è±¡ï¼Œè¡¨ç¤ºèº«ä»½éªŒè¯ä¿¡æ¯
         var principal = authenticationState.User;
 
-        // ¼ì²éÓÃ»§ÊÇ·ñÒÑÍ¨¹ıÉí·İÑéÖ¤   »ñÈ¡ÓÃ»§ÉùÃ÷
+        // æ£€æŸ¥ç”¨æˆ·æ˜¯å¦å·²é€šè¿‡èº«ä»½éªŒè¯   è·å–ç”¨æˆ·å£°æ˜
         if (principal.Identity?.IsAuthenticated == true)
         {
             var userId = principal.FindFirst(options.ClaimsIdentity.UserIdClaimType)?.Value;
@@ -96,13 +96,13 @@ internal sealed class PersistingRevalidatingAuthenticationStateProvider : Revali
 
             if (userId != null && email != null)
             {
-                // ½«ÓÃ»§ĞÅÏ¢³Ö¾Ã»¯´æ´¢Îª JSON
+                // å°†ç”¨æˆ·ä¿¡æ¯æŒä¹…åŒ–å­˜å‚¨ä¸º JSON
                 // public void PersistAsJson(string key, object value){}
                 state.PersistAsJson(nameof(UserInfo), new UserInfo
                 {
                     UserId = userId,
                     Email = email,
-                    UserName=userName,
+                    UserName = userName ?? email,
                 });
             }
         }

@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\ChatOnBlazor.Client.props" />
-</Project>

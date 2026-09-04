@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\ChatOnBlazor.Client.props" />
-</Project>

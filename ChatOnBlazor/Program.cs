@@ -31,6 +31,37 @@ builder.Services.AddAuthentication(options =>
     })
     .AddIdentityCookies();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Events.OnRedirectToLogin = context =>
+    {
+        if (context.Request.Path.StartsWithSegments("/chathub"))
+        {
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+        }
+        else
+        {
+            context.Response.Redirect(context.RedirectUri);
+        }
+
+        return Task.CompletedTask;
+    };
+
+    options.Events.OnRedirectToAccessDenied = context =>
+    {
+        if (context.Request.Path.StartsWithSegments("/chathub"))
+        {
+            context.Response.StatusCode = StatusCodes.Status403Forbidden;
+        }
+        else
+        {
+            context.Response.Redirect(context.RedirectUri);
+        }
+
+        return Task.CompletedTask;
+    };
+});
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -44,8 +75,10 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 
 builder.Services.AddSignalR();
+builder.Services.AddSingleton<IPasswordHasher<string>, PasswordHasher<string>>();
+builder.Services.AddSingleton<ChatRoomService>();
 
-// ÏìÓ¦Ñ¹ËõÖÐ¼ä¼þ·þÎñ
+// å“åº”åŽ‹ç¼©ä¸­é—´ä»¶æœåŠ¡
 builder.Services.AddResponseCompression(opts =>
 {
     opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
@@ -81,6 +114,6 @@ app.MapRazorComponents<App>()
 // Add additional endpoints required by the Identity /Account Razor components.
 app.MapAdditionalIdentityEndpoints();
 
-app.MapHub<ChatHub>("/chathub");
+app.MapHub<ChatHub>("/chathub").RequireAuthorization();
 
 app.Run();

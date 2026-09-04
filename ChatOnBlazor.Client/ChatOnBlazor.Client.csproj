@@ -9,11 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="HtmlSanitizer" Version="9.2.1039" />
     <PackageReference Include="Markdig" Version="0.37.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.*" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.*" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.7" />
-    <PackageReference Include="MudBlazor" Version="7.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.30" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.30" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.30" />
+    <PackageReference Include="MudBlazor" Version="7.16.0" />
   </ItemGroup>
 
 </Project>

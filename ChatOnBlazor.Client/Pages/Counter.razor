@@ -1,7 +1,7 @@
 ﻿@page "/counter"
 @using System.IO
 @using Microsoft.AspNetCore.Authorization
-@using Markdig
+@using ChatOnBlazor.Client.Security
 @inject IJSRuntime JSRuntime
 
 @attribute [Authorize]
@@ -52,7 +52,7 @@
                 @if (IsPreviewMode)
                 {
                     <div class="mud-typography-body1 mt-4 markdown-body" style="flex-grow: 1; overflow-y: auto;">
-                        @((MarkupString)Markdown.ToHtml(NoteContent))
+                        @((MarkupString)SafeMarkdown.ToHtml(NoteContent))
                     </div>
                 }
                 else
@@ -173,13 +173,12 @@
         }
     }
 
-    @@media (prefers-color-scheme)
 </style>
 
 
 @code {
     [CascadingParameter(Name = "paper")]
-    string paperBackgroundColor { get; set; }
+    string paperBackgroundColor { get; set; } = string.Empty;
 
     private Dictionary<string, Dictionary<string, string>> Folders = new Dictionary<string, Dictionary<string, string>>();
     private string? SelectedValue;
@@ -286,9 +285,7 @@
             var parts = SelectedValue.Split('|');
             if (parts.Length == 2 && Folders.ContainsKey(parts[0]))
             {
-                Folders[parts[0]][parts[1]] = NoteContent;
-                Console.WriteLine($"Saving note: {parts[1]} in folder: {parts[0]}");
-                Console.WriteLine($"Content: {NoteContent}");
+                Folders[parts[0]][parts[1]] = NoteContent ?? string.Empty;
             }
         }
     }
